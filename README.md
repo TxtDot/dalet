@@ -10,6 +10,9 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 
 [Specification](./specification/main.md).
 
+> [!WARNING]
+> Specification is not complete.
+
 ## Concept
 
 This is Daleth (high level language that translates to Daletl).

@@ -1,8 +1,5 @@
 # Dalet v1.0-preview
 
-> [!WARNING]
-> Specification is not complete.
-
 **Dalet** is a system through which it is possible to combine human readable markup language and small size of transmitted data. The system is divided into two stages and two languages.
 
 ## Languages
