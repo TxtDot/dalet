@@ -20,6 +20,7 @@ This is Daleth (high level language that translates to Daletl).
 ```yaml
 # tag: body
 # each line is a new tag (if not {}, () is used)
+# body text always trimmed
 h[1]: TxtDot revolution
 p: TxtDot is a cool project
 
@@ -98,5 +99,21 @@ row: {
     }
 
   }
+}
+
+# | is delimeter for elements.
+# Element | Description == {
+#   Element
+#   Description
+# }
+table: {
+  Element | Description
+  h       | Heading
+  p       | Paragraph
+  img     | Image
+  link    | Link
+  btn     | Button
+  ul      | Unordered list
+  br      | Line break
 }
 ```

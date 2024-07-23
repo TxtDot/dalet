@@ -4,10 +4,10 @@
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 0           |
 | name     | el          |
-| argument | no          |
+| id       | 0           |
 | body     | text, tags  |
+| argument | no          |
 
 Most primitive tag. Also used if no tag is specified.
 
@@ -29,10 +29,10 @@ Element also used if no tag is specified.
 
 | Property | Description         |
 | -------- | ------------------- |
-| id       | 1                   |
 | name     | h                   |
-| argument | int x; 1 <= x <= 10 |
+| id       | 1                   |
 | body     | text                |
+| argument | int x; 1 <= x <= 10 |
 
 Heading is used for text formatting.
 
@@ -56,10 +56,10 @@ h[1]: Dalet
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 2           |
 | name     | p           |
-| argument | no          |
+| id       | 2           |
 | body     | text, tags  |
+| argument | no          |
 
 Paragraph is used for text formatting.
 
@@ -79,10 +79,10 @@ p: This is a paragraph
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 3           |
 | name     | br          |
-| argument | no          |
+| id       | 3           |
 | body     | no          |
+| argument | no          |
 
 Line break is used to insert a line break into the text.
 
@@ -102,10 +102,10 @@ br
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 4           |
 | name     | ul          |
-| argument | no          |
+| id       | 4           |
 | body     | tags        |
+| argument | no          |
 
 Unordered list is used to create a list.
 
@@ -134,10 +134,10 @@ ul: {
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 5           |
 | name     | ol          |
-| argument | no          |
+| id       | 5           |
 | body     | tags        |
+| argument | no          |
 
 Ordered list is used to create a list with increasing numbers.
 
@@ -168,10 +168,10 @@ ol: {
 
 | Property | Description                    |
 | -------- | ------------------------------ |
-| id       | 6                              |
 | name     | row                            |
-| argument | string (optional); center, end |
+| id       | 6                              |
 | body     | tags                           |
+| argument | string (optional); center, end |
 
 Splits the text into rows.
 
@@ -205,10 +205,10 @@ row[center]: {
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 7           |
 | name     | link        |
-| argument | string      |
+| id       | 7           |
 | body     | text, tags  |
+| argument | string      |
 
 Link to other sites. On click the link opens in new tab.
 
@@ -228,10 +228,10 @@ link[https://example.com]: I am Link
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 8           |
 | name     | navlink     |
-| argument | string      |
+| id       | 8           |
 | body     | text, tags  |
+| argument | string      |
 
 Link to the same site. On click the link opens in current tab.
 
@@ -251,10 +251,10 @@ navlink[/specification]: I am Navlink
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 9           |
 | name     | btn         |
-| argument | string      |
+| id       | 9           |
 | body     | text,tags   |
+| argument | string      |
 
 Same as link, but with button style.
 
@@ -274,10 +274,10 @@ btn[https://example.com]: I am Button
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 9           |
 | name     | navbtn      |
-| argument | string      |
+| id       | 9           |
 | body     | text,tags   |
+| argument | string      |
 
 Same as navlink, but with button style.
 
@@ -297,10 +297,10 @@ navbtn[https://example.com]: I am NavButton
 
 | Property | Description |
 | -------- | ----------- |
-| id       | 11          |
 | name     | img         |
-| argument | string      |
+| id       | 11          |
 | body     | no          |
+| argument | string      |
 
 Displays an image.
 
@@ -314,4 +314,48 @@ img[/dalet.png]
 
 ```json5
 [11, null, "/dalet.png"]
+```
+
+## 12. Table
+
+| Property | Description |
+| -------- | ----------- |
+| name     | table       |
+| id       | 12          |
+| body     | tags        |
+| argument | no          |
+
+Creates a table.
+
+**Daleth example**:
+
+```yaml
+table: {
+    Name | Age
+    Elon | 53,
+  }
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[
+  12,
+  [
+    [
+      0,
+      [
+        [0, "Name"],
+        [0, "Age"],
+      ],
+    ],
+    [
+      0,
+      [
+        [0, "Elon"],
+        [0, "53"],
+      ],
+    ],
+  ],
+]
 ```
