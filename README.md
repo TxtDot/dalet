@@ -101,19 +101,23 @@ row: {
   }
 }
 
-# "|" is delimeter for text without tags.
-# Element | Description == tcol: {
-#   Element
-#   Description
-# }
-table: {
-  Element | Description
-  h       | Heading
-  p       | Paragraph
-  img     | Image
-  link    | Link
-  btn     | Button
-  ul      | Unordered list
-  br      | Line break
-}
+# Table has custom format if text used
+# +< cells > - primary column
+#  < cells > - secondary column
+#  < Element | Description > - converts to
+#  tcol: {
+#    Element
+#    Description
+#  }
+table: (
+  +< Element  | Description     >
+   < h        | Heading         >
+   < p        | Paragraph       >
+   < img      | Image           >
+   < link     | Link            >
+   < btn      | Button          >
+   < ul       | Unordered list  >
+   < br       | Line break      >
+  +< quantity | 7               >
+)
 ```

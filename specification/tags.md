@@ -318,22 +318,22 @@ img[/dalet.png]
 
 ## 12. Table
 
-| Property | Description |
-| -------- | ----------- |
-| name     | table       |
-| id       | 12          |
-| body     | tcol[]      |
-| argument | no          |
+| Property | Description                       |
+| -------- | --------------------------------- |
+| name     | table                             |
+| id       | 12                                |
+| body     | (tcol or tpcol)[] or table-string |
+| argument | no                                |
 
 Creates a table.
 
 **Daleth example**:
 
-```yaml
+```txt
 table: {
-    Name | Age
-    Elon | 53,
-  }
+  Name | Age
+  Elon | 53,
+}
 ```
 
 **Daletl example (json5 representation)**:
@@ -385,6 +385,38 @@ tcol: {
 ```json5
 [
   13,
+  [
+    [0, "Name"],
+    [0, "Age"],
+  ],
+]
+```
+
+## 14. Table Primary Column
+
+| Property | Description |
+| -------- | ----------- |
+| name     | tpcol       |
+| id       | 14          |
+| body     | tags        |
+| argument | no          |
+
+Like table column, but with primary background.
+
+**Daleth example**:
+
+```txt
+tpcol: {
+  Name
+  Age
+}
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[
+  14,
   [
     [0, "Name"],
     [0, "Age"],
