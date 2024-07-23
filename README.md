@@ -1,8 +1,8 @@
 <div align="center">
 
-![dalet](./imgs/dalet.png)
+![Dalet](./imgs/dalet.png)
 
-# dalet
+# Dalet
 
 </div>
 
@@ -12,17 +12,17 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 
 ## Concept
 
-This is daleth (high level language that translates to daletl).
+This is Daleth (high level language that translates to Daletl).
 
 ```yaml
 # tag: body
 # each line is a new tag (if not {}, () is used)
-h1: TxtDot revolution
+h[1]: TxtDot revolution
 p: TxtDot is a cool project
 
 # If no tag is specified, then the 'element' tag, the most primitive tag, is placed
 (
-Check dalet too
+Check Dalet too
 This is one paragraph
 )
 
@@ -41,7 +41,7 @@ row[center]: {
 # {} for multiple objects
 row: {
   {
-    h2: Features
+    h[2]: Features
 
     ul: {
       Server-side page simplification
@@ -58,10 +58,10 @@ row: {
   }
 
   {
-    h2: Running
+    h[2]: Running
 
     {
-      h3: Dev
+      h[3]: Dev
 
       # () for multiline strings, indent is automatically trimmed
       code: (
@@ -79,7 +79,7 @@ row: {
     }
 
     {
-      h3: Production
+      h[3]: Production
 
       code: (
         npm install
@@ -89,7 +89,7 @@ row: {
     }
 
     {
-      h3: Docker
+      h[3]: Docker
 
       code: docker compose up -d
     }
