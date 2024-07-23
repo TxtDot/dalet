@@ -10,7 +10,7 @@
 
 ### Daletl
 
-**Daletl** is a low-level language for machines. It is used in data transmission, processing and generation. It is specifically optimized to transfer as little data as possible using json, messagepack[^3] or daletpack[^2].
+**Daletl** is a low-level language for machines. It is used in data transmission, processing and generation. It is specifically optimized to transfer as little data as possible using MessagePack.
 
 ## Stages
 
@@ -24,10 +24,9 @@ At this stage, only daletl is used. This stage is used by programs for generatio
 
 ## Specification
 
-[Tags](./tags/main.md)
+[Tags](./tags.md)
+[Daletl](./daletl.md)
 
 ## References
 
 [^1]: In the first versions only. Detranslation is planned for the future for the sake of devtools.
-[^2]: Daletpack is not created and is not used at the moment. It is planned for the future.
-[^3]: Daletl can be used through a variety of serialization formats.
