@@ -375,8 +375,8 @@ Creates a table column.
 
 ```txt
 tcol: {
-    Name
-    Age
+  Name
+  Age
 }
 ```
 

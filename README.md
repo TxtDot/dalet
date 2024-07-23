@@ -1,6 +1,6 @@
 <div align="center">
 
-![Dalet](./imgs/dalet.png)
+![Dalet](https://github.com/TxtDot/.github/blob/main/imgs/dalet.png?raw=true)
 
 # Dalet
 
@@ -15,7 +15,7 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 
 ## Concept
 
-This is Daleth (high level language that translates to Daletl).
+This is Daleth (high level language that compiles to Daletl).
 
 ```yaml
 # tag: body

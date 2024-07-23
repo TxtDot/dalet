@@ -12,7 +12,7 @@
 
 ### Daleth
 
-**Daleth** is a high-level language for humans. It can be translated into daletl, but daletl cannot be translated into daleth[^1]. It is only used for page creation by humans.
+**Daleth** is a high-level language for humans. It can be compiled into daletl, but daletl cannot be decompiled into daleth[^1]. It is only used for page creation by humans.
 
 ### Daletl
 
@@ -30,4 +30,4 @@ At this stage, only daletl is used. This stage is used by programs for generatio
 
 ## References
 
-[^1]: In the first versions only. Detranslation is planned for the future for the sake of devtools.
+[^1]: In the first versions only. Decompilation is planned for the future for the sake of devtools.
