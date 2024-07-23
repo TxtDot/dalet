@@ -2,12 +2,12 @@
 
 ## Element
 
-| Property    | Description |
-| ----------- | ----------- |
-| Daleth name | element     |
-| Daletl name | e           |
-| Argument    | no          |
-| Body        | any         |
+| Property | Description |
+| -------- | ----------- |
+| id       | 0           |
+| name     | element     |
+| argument | no          |
+| body     | any         |
 
 Most primitive tag. Also used if no tag is specified.
 
@@ -27,12 +27,12 @@ Daletl json5 data representation:
 
 ## Heading
 
-| Property    | Description         |
-| ----------- | ------------------- |
-| Daleth name | h                   |
-| Daletl name | h                   |
-| Argument    | int x; 1 <= x <= 10 |
-| Body        | text                |
+| Property | Description         |
+| -------- | ------------------- |
+| id       | 1                   |
+| name     | h                   |
+| argument | int x; 1 <= x <= 10 |
+| body     | text                |
 
 Heading is used for text formatting.
 
