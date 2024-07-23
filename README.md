@@ -101,8 +101,8 @@ row: {
   }
 }
 
-# | is delimeter for elements.
-# Element | Description == {
+# "|" is delimeter for text without tags.
+# Element | Description == tcol: {
 #   Element
 #   Description
 # }

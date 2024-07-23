@@ -2,6 +2,12 @@
 
 **Dalet** is a system through which it is possible to combine human readable markup language and small size of transmitted data. The system is divided into two stages and two languages.
 
+## Specification
+
+- [Tags](./tags.md)
+- [Daletl](./daletl.md)
+- [Daleth](./daleth.md)
+
 ## Languages
 
 ### Daleth
@@ -21,11 +27,6 @@ In the first stage, the daleth language is parsed and converted to daletl. All t
 ### Stage 2
 
 At this stage, only daletl is used. This stage is used by programs for generation, modification and rendering. The data is transferred between the server and the client only in this stage.
-
-## Specification
-
-[Tags](./tags.md)
-[Daletl](./daletl.md)
 
 ## References
 

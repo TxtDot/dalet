@@ -322,7 +322,7 @@ img[/dalet.png]
 | -------- | ----------- |
 | name     | table       |
 | id       | 12          |
-| body     | tags        |
+| body     | tcol[]      |
 | argument | no          |
 
 Creates a table.
@@ -343,19 +343,51 @@ table: {
   12,
   [
     [
-      0,
+      13,
       [
         [0, "Name"],
         [0, "Age"],
       ],
     ],
     [
-      0,
+      13,
       [
         [0, "Elon"],
         [0, "53"],
       ],
     ],
+  ],
+]
+```
+
+## 13. Table Column
+
+| Property | Description |
+| -------- | ----------- |
+| name     | tcol        |
+| id       | 13          |
+| body     | tags        |
+| argument | no          |
+
+Creates a table column.
+
+**Daleth example**:
+
+```txt
+tcol: {
+    Name
+    Age
+}
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[
+  13,
+  [
+    [0, "Name"],
+    [0, "Age"],
   ],
 ]
 ```
