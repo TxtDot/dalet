@@ -31,10 +31,10 @@ This is one paragraph
 
 This is another paragraph
 
-# [ ] for arguments
+# [ ] for argument
 row[center]: {
   link[https://github.com/txtdot/txtdot]: Homepage
-  button[https://example.com/donate]: {
+  btn[https://example.com/donate]: {
     # tag without body
     img[https://example.com/donate.png]
     Donate

@@ -21,7 +21,7 @@ All tags specification is in [Tags](./tags.md).
 Each tag is array of 1-3 elements.
 
 1. Tag id
-2. Tag body (optional)
+2. Tag body (optional if argument not specified, if argument specified it must be null)
 3. Tag argument (optional)
 
 Tag id is integer number.
