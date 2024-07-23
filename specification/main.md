@@ -16,7 +16,7 @@
 
 ### Stage 1 (optional)
 
-In the first stage, the daleth language is parsed and converted to daletl. All tag names are replaced by the smallest possible names, so that they take up less space in json or messagepack, for example. **This stage is not for data transmission**.
+In the first stage, the daleth language is parsed and converted to daletl. All tags becomes an array of properties `[tag_id, body, argument]`, so that they take up less space in json or messagepack, for example. **This stage is not for data transmission**.
 
 ### Stage 2
 

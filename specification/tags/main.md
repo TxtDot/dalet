@@ -22,7 +22,7 @@ Daletl
 Daletl json5 data representation:
 
 ```json5
-{ e: "Dalet" }
+[0, "Dalet"]
 ```
 
 ## Heading
@@ -49,5 +49,5 @@ h[1]: Dalet
 Daletl json5 representation:
 
 ```json5
-{ h: "Dalet", l: 1 }
+[1, "Dalet", 1]
 ```
