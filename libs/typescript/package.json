@@ -1,0 +1,36 @@
+{
+  "name": "@txtdot/dalet",
+  "version": "1.0.0-pre0",
+  "description": "Dalet realization in typescript",
+  "main": "dist/lib.js",
+  "types": "dist/lib.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TxtDot/dalet.git"
+  },
+  "keywords": [
+    "dalet",
+    "markup-language",
+    "markup",
+    "language",
+    "web"
+  ],
+  "author": "artegoser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TxtDot/dalet/issues"
+  },
+  "homepage": "https://github.com/TxtDot/dalet#readme",
+  "devDependencies": {
+    "tsc": "^2.0.4"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "3.0.0-beta2"
+  }
+}
