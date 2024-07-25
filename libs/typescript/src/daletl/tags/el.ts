@@ -1,4 +1,4 @@
-import { bodyToRaw } from "../../utils";
+import { bodyToRaw, chtml } from "../../utils";
 import { RawTag, Tag, Body } from "../types";
 
 export default class El extends Tag {
@@ -6,11 +6,11 @@ export default class El extends Tag {
     super(0, body, null);
   }
 
-  public get raw(): RawTag {
-    return bodyToRaw(this.body);
+  get raw(): RawTag {
+    return bodyToRaw(this.body)!;
   }
 
-  public toHtml(classes?: boolean): string {
-    return "";
+  toHtml(classes?: boolean): string {
+    return chtml("section", "el", classes, this.body);
   }
 }

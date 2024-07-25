@@ -1,5 +1,13 @@
 import { encode, decode } from "@msgpack/msgpack";
-import { ParseError, RawTag, Tag, RawTagAsArray, RawBody, Body } from "./types";
+import {
+  ParseError,
+  RawTag,
+  Tag,
+  RawTagAsArray,
+  RawBody,
+  Body,
+  RootRaw,
+} from "./types";
 import El from "./tags/el";
 import { TagNormalizers } from "./normalizers";
 
@@ -39,7 +47,7 @@ export function parseBody(body: RawBody): Body {
 
   if (Array.isArray(body)) {
     if (Array.isArray(body[0])) {
-      return body.map(parseTag);
+      return body.map((t) => parseTag(t as RawTag));
     }
 
     if (typeof body[0] === "number") {
@@ -50,14 +58,14 @@ export function parseBody(body: RawBody): Body {
   throw new ParseError("Invalid tag body");
 }
 
-export function parse(root_data: Uint8Array): Tag[] {
+export function parse(root_data: Uint8Array): Root {
   let root = decode(root_data);
 
   if (!Array.isArray(root)) {
     throw new ParseError("Daletl root must be array");
   }
 
-  return root.map(parseTag);
+  return new Root(root.map(parseTag));
 }
 
 export class Root {
@@ -66,8 +74,12 @@ export class Root {
     this.root = root;
   }
 
+  get raw(): RootRaw {
+    return this.root.map((t) => t.raw);
+  }
+
   encode(): Uint8Array {
-    return encode(this.root.map((t) => t.encode()));
+    return encode(this.raw);
   }
 
   toHtml(classes?: boolean): string {

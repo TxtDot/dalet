@@ -8,7 +8,9 @@
     "/dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "bstart": "tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -31,10 +33,11 @@
     "@eslint/js": "^9.7.0",
     "eslint": "9.x",
     "globals": "^15.8.0",
-    "tsc": "^2.0.4",
+    "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
   },
   "dependencies": {
-    "@msgpack/msgpack": "3.0.0-beta2"
+    "@msgpack/msgpack": "3.0.0-beta2",
+    "zod": "^3.23.8"
   }
 }
