@@ -16,14 +16,14 @@ Daletl root is array of tags. For convenience, we will use the json5 representat
 
 All tags specification is in [Tags](./tags.md).
 
-Each tag may be one of three types:
+Each tag may be one of four types:
 
 #### Data Representation
 
-##### As array of 1-3 elements
+##### As array of 2-3 elements
 
 1. Tag id
-2. Tag body (optional if argument not specified, if argument specified it must be null)
+2. Tag body
 3. Tag argument (optional)
 
 Tag id is integer number.
@@ -48,6 +48,20 @@ Argument can be number or string.
     [0, "Item 2"],
   ],
 ]
+```
+
+##### As number
+
+Number becomes tag.
+
+```json5
+1
+```
+
+equals to
+
+```json5
+[1, null]
 ```
 
 ##### As string

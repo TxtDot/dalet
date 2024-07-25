@@ -1,37 +1,34 @@
 import { encode, decode } from "@msgpack/msgpack";
-import { ParseError, Root, Tag } from "./types";
+import { ParseError, RawTag, Tag, RawTagAsArray, RawBody, Body } from "./types";
+import El from "./tags/el";
+import { TagNormalizers } from "./normalizers";
 
-export function parseRawTag(raw_tag: any[] | string): Tag {
+export function parseTag(raw_tag: RawTag): Tag {
   if (typeof raw_tag === "string") {
-    return {
-      id: 0,
-      body: raw_tag,
-      argument: null,
-    };
+    return new El(raw_tag);
+  }
+
+  if (typeof raw_tag === "number") {
+    return TagNormalizers[raw_tag]([raw_tag, null]);
   }
 
   if (Array.isArray(raw_tag)) {
     if (Array.isArray(raw_tag[0])) {
-      return {
-        id: 0,
-        body: parseRawTagBody(raw_tag),
-        argument: null,
-      };
+      raw_tag = raw_tag as RawTag[];
+      return new El(raw_tag.map(parseTag));
     }
 
     if (typeof raw_tag[0] === "number") {
-      return {
-        id: raw_tag[0],
-        body: parseRawTagBody(raw_tag[1]),
-        argument: raw_tag[3] || null,
-      };
+      return TagNormalizers[(raw_tag as RawTagAsArray)[0]](
+        raw_tag as RawTagAsArray
+      );
     }
   }
 
   throw new ParseError("Invalid tag");
 }
 
-export function parseRawTagBody(body: string | null | any[]): Tag["body"] {
+export function parseBody(body: RawBody): Body {
   if (typeof body === "string") {
     return body;
   }
@@ -42,23 +39,38 @@ export function parseRawTagBody(body: string | null | any[]): Tag["body"] {
 
   if (Array.isArray(body)) {
     if (Array.isArray(body[0])) {
-      return body.map(parseRawTag);
+      return body.map(parseTag);
     }
 
     if (typeof body[0] === "number") {
-      return [parseRawTag(body)];
+      return [parseTag(body)];
     }
   }
 
   throw new ParseError("Invalid tag body");
 }
 
-export function parse(root_data?: Uint8Array): Root {
-  let root = root_data ? decode(root_data) : [];
+export function parse(root_data: Uint8Array): Tag[] {
+  let root = decode(root_data);
 
   if (!Array.isArray(root)) {
     throw new ParseError("Daletl root must be array");
   }
 
-  return root.map(parseRawTag);
+  return root.map(parseTag);
+}
+
+export class Root {
+  root: Tag[];
+  constructor(root: Tag[]) {
+    this.root = root;
+  }
+
+  encode(): Uint8Array {
+    return encode(this.root.map((t) => t.encode()));
+  }
+
+  toHtml(classes?: boolean): string {
+    return this.root.map((t) => t.toHtml(classes)).join("");
+  }
 }
