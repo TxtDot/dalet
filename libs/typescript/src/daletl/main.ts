@@ -59,7 +59,7 @@ export function parseBody(body: RawBody): Body {
 }
 
 export function parse(root_data: Uint8Array): Root {
-  let root = decode(root_data);
+  const root = decode(root_data);
 
   if (!Array.isArray(root)) {
     throw new ParseError("Daletl root must be array");

@@ -1,5 +1,5 @@
 import { bodyToRaw, chtml } from "../../utils";
-import { RawTag, Tag, Body } from "../types";
+import { RawTag, Tag } from "../types";
 
 export default class El extends Tag {
   constructor(body: string | Tag[]) {

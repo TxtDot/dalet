@@ -1,4 +1,4 @@
-import { Body, ParseError, RawBody, RawTag, Tag } from "./daletl/types";
+import { Body, RawBody, RawTag, Tag } from "./daletl/types";
 
 export function bodyToRaw(body: Body): RawBody {
   if (typeof body === "string") {
@@ -41,12 +41,12 @@ export function chtml(
   body?: Body,
   props?: Props
 ) {
-  let classProp = classes ? { class: classNames } : {};
+  const classProp = classes ? { class: classNames } : {};
   return html(tag, body, { ...props, ...classProp });
 }
 
 function html(tag: string, body?: Body, props?: Props) {
-  let pr = Object.entries(props || {})
+  const pr = Object.entries(props || {})
     .map(([key, value]) => `${key}="${value}"`)
     .join(" ");
 

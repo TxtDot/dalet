@@ -15,9 +15,10 @@ const TagNormalizers = [
 
 export { TagNormalizers };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function n(body: z.ZodTypeAny, argument: z.ZodTypeAny, T: any) {
   return (tag: RawTagAsArray) => {
-    let parsedBody = parseBody(tag[1]);
+    const parsedBody = parseBody(tag[1]);
 
     z.tuple([z.number().int(), body, argument]).parse([
       tag[0],

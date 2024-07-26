@@ -95,7 +95,7 @@ br
 **Daletl example (json5 representation)**:
 
 ```json5
-[3]
+3
 ```
 
 ## 4. Unordered list
@@ -422,4 +422,257 @@ tpcol: {
     [0, "Age"],
   ],
 ]
+```
+
+## 15. Horizontal rule
+
+| Property | Description |
+| -------- | ----------- |
+| name     | hr          |
+| id       | 15          |
+| body     | no          |
+| argument | no          |
+
+Creates a horizontal rule.
+
+**Daleth example**:
+
+```yaml
+hr
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+15
+```
+
+## 16. Bold
+
+| Property | Description |
+| -------- | ----------- |
+| name     | b           |
+| id       | 16          |
+| body     | text        |
+| argument | no          |
+
+Creates **bold** text.
+
+**Daleth example**:
+
+```yaml
+b: I am Bold
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[16, "I am Bold"]
+```
+
+## 17. Italic
+
+| Property | Description |
+| -------- | ----------- |
+| name     | i           |
+| id       | 17          |
+| body     | text        |
+| argument | no          |
+
+Creates _italic_ text.
+
+**Daleth example**:
+
+```yaml
+i: I am Italic
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[17, "I am Italic"]
+```
+
+## 18. Blockquote
+
+| Property | Description |
+| -------- | ----------- |
+| name     | bq          |
+| id       | 18          |
+| body     | text, tags  |
+| argument | no          |
+
+Creates a blockquote.
+
+**Daleth example**:
+
+```yaml
+bq: I am Blockquote
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[18, "I am Blockquote"]
+```
+
+## 19. Footnote Link
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | footlnk        |
+| id       | 19             |
+| body     | no             |
+| argument | string, number |
+
+Link to footnote.
+
+**Daleth example**:
+
+```yaml
+footlnk[1]
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[19, null, 1]
+```
+
+## 20. Footnote
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | footn          |
+| id       | 20             |
+| body     | text           |
+| argument | string, number |
+
+Creates footnote.
+
+**Daleth example**:
+
+```yaml
+footn[1]: I am Footnote
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[20, "I am Footnote", 1]
+```
+
+## 21. Anchor
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | a              |
+| id       | 21             |
+| body     | no             |
+| argument | string, number |
+
+Creates anchor. Like `<a href="#argument"></a>` in HTML.
+
+**Daleth example**:
+
+```yaml
+a[0]
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[21, null, 0]
+```
+
+## 22. Strikethrough
+
+| Property | Description |
+| -------- | ----------- |
+| name     | s           |
+| id       | 22          |
+| body     | text        |
+| argument | no          |
+
+Creates ~~strikethrough~~ text.
+
+**Daleth example**:
+
+```yaml
+s: I am Strikethrough
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[22, "I am Strikethrough"]
+```
+
+## 23. Superscript
+
+| Property | Description |
+| -------- | ----------- |
+| name     | sup         |
+| id       | 23          |
+| body     | text        |
+| argument | no          |
+
+Creates ^superscript^ text.
+
+**Daleth example**:
+
+```yaml
+sup: I am Superscript
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[23, "I am Superscript"]
+```
+
+## 24. Subscript
+
+| Property | Description |
+| -------- | ----------- |
+| name     | sub         |
+| id       | 24          |
+| body     | text        |
+| argument | no          |
+
+Creates ~subscript~ text.
+
+**Daleth example**:
+
+```yaml
+sub: I am Subscript
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[24, "I am Subscript"]
+```
+
+## 25. Disclosure
+
+| Property | Description |
+| -------- | ----------- |
+| name     | disc        |
+| id       | 25          |
+| body     | text, tags  |
+| argument | string      |
+
+Creates disclosure element.
+
+**Daleth example**:
+
+```yaml
+disc[Click to expand]: I am Disclosure
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[25, "I am Disclosure", "Click to expand"]
 ```
