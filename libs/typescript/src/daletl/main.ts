@@ -16,10 +16,6 @@ export function parseTag(raw_tag: RawTag): Tag {
     return new El(raw_tag);
   }
 
-  if (typeof raw_tag === "number") {
-    return TagNormalizers[raw_tag]([raw_tag, null]);
-  }
-
   if (Array.isArray(raw_tag)) {
     if (Array.isArray(raw_tag[0])) {
       raw_tag = raw_tag as RawTag[];

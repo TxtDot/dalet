@@ -2,7 +2,7 @@
 
 ## Data format
 
-Daletl must be serialized as [MessagePack](https://github.com/msgpack/msgpack/blob/master/spec.md). All data transfer between server and client is done in this format.
+Daletl must be serialized as [DaletPack](./daletpack.md). All data transfer between server and client is done in this format.
 
 ### Root
 
@@ -20,10 +20,10 @@ Each tag may be one of four types:
 
 #### Data Representation
 
-##### As array of 2-3 elements
+##### As array of 1-3 elements
 
 1. Tag id
-2. Tag body
+2. Tag body (optional if argument is null)
 3. Tag argument (optional)
 
 Tag id is integer number.
@@ -48,20 +48,6 @@ Argument can be number or string.
     [0, "Item 2"],
   ],
 ]
-```
-
-##### As number
-
-Number becomes tag.
-
-```json5
-1
-```
-
-equals to
-
-```json5
-[1, null]
 ```
 
 ##### As string

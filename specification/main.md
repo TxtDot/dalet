@@ -7,6 +7,7 @@
 - [Tags](./tags.md)
 - [Daletl](./daletl.md)
 - [Daleth](./daleth.md)
+- [DaletPack](./daletpack.md)
 
 ## Languages
 
@@ -16,13 +17,13 @@
 
 ### Daletl
 
-**Daletl** is a low-level language for machines. It is used in data transmission, processing and generation. It is specifically optimized to transfer as little data as possible using MessagePack.
+**Daletl** is a low-level language for machines. It is used in data transmission, processing and generation. It is specifically optimized to transfer as little data as possible using DaletPack.
 
 ## Stages
 
 ### Stage 1 (optional)
 
-In the first stage, the daleth language is parsed and converted to daletl. All tags becomes an array of properties `[tag_id, body, argument]`, so that they take up less space in json or messagepack, for example. **This stage is not for data transmission**.
+In the first stage, the daleth language is parsed and converted to daletl. All tags becomes an array of properties `[tag_id, body, argument]`, so that they take up less space in the transmitted data, for example. **This stage is not for data transmission**.
 
 ### Stage 2
 

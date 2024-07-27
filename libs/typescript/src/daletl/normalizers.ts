@@ -4,13 +4,12 @@ import Heading from "./tags/heading";
 import { RawTagAsArray } from "./types";
 import { z } from "zod";
 
+const textOrTag = z.custom((b) => b !== null);
+const text = z.string();
+
 const TagNormalizers = [
-  n(
-    z.custom((b) => b !== null),
-    z.any(),
-    El
-  ),
-  n(z.string(), z.number().int().min(1).max(6), Heading),
+  n(textOrTag, z.any(), El),
+  n(text, z.number().int().min(1).max(6).nullable(), Heading),
 ];
 
 export { TagNormalizers };

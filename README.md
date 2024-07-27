@@ -11,7 +11,7 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 [Specification](./specification/main.md).
 
 > [!WARNING]
-> Specification is not complete.
+> Specification is not complete and very unstable.
 
 ## Concept
 

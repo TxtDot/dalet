@@ -38,7 +38,10 @@ export abstract class Tag {
   encode(): Uint8Array {
     return encode(this.raw);
   }
-  abstract toHtml(classes?: boolean): string;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  toHtml(classes?: boolean): string {
+    return "";
+  }
 }
 
 export type Body = string | Tag[] | null;
