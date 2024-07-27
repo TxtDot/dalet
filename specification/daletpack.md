@@ -4,6 +4,8 @@ DaletPack is an binary data format for Dalet, that is used for minimizing the si
 
 All data must be compressed in [Zstandard](https://datatracker.ietf.org/doc/html/rfc8878) format.
 
+Root data format is array of tags (see [Daletl specification](./daletl.md)), each element reads sequentially without type and size definition.
+
 ## Types (16)
 
 - **Null**
@@ -32,17 +34,17 @@ All data must be compressed in [Zstandard](https://datatracker.ietf.org/doc/html
 | int                      | 1   | 0001    |
 | str 3                    | 2   | 0010    |
 | str 4                    | 3   | 0011    |
-| str 6                    | 4   | 0100    |
-| str 8                    | 5   | 0101    |
-| str 16                   | 6   | 0110    |
-| str 32                   | 7   | 0111    |
-| arr 3                    | 8   | 1000    |
-| arr 4                    | 9   | 1001    |
-| arr 8                    | 10  | 1010    |
-| arr 16                   | 11  | 1011    |
-| arr 32                   | 12  | 1100    |
-| tag (id)                 | 13  | 1101    |
-| tag (id, body)           | 14  | 1110    |
+| str 8                    | 4   | 0100    |
+| str 16                   | 5   | 0101    |
+| str 32                   | 6   | 0110    |
+| arr 3                    | 7   | 0111    |
+| arr 4                    | 8   | 1000    |
+| arr 8                    | 9   | 1001    |
+| arr 16                   | 10  | 1010    |
+| arr 32                   | 11  | 1011    |
+| tag (id)                 | 12  | 1100    |
+| tag (id, body)           | 13  | 1101    |
+| tag (id, argument)       | 14  | 1110    |
 | tag (id, body, argument) | 15  | 1111    |
 
 ### Notation in diagrams
@@ -93,24 +95,19 @@ str 4 (up to 15 bytes):
 |  0011  | XXXX |  data  |
 +--------+------+========+
 
-str 6 (up to 63 bytes):
-+--------+--------+========+
-|  0100  | XXXXXX |  data  |
-+--------+--------+========+
-
 str 8 (up to 255 bytes):
 +--------+----------+========+
-|  0101  | XXXXXXXX |  data  |
+|  0100  | XXXXXXXX |  data  |
 +--------+----------+========+
 
 str 16 (up to 2^16-1 bytes):
 +--------+----------+----------+========+
-|  0110  | XXXXXXXX | XXXXXXXX |  data  |
+|  0101  | XXXXXXXX | XXXXXXXX |  data  |
 +--------+----------+----------+========+
 
 str 32 (up to 2^32-1 bytes):
 +--------+----------+----------+----------+----------+========+
-|  0111  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
+|  0110  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
 +--------+----------+----------+----------+----------+========+
 ```
 
@@ -119,27 +116,27 @@ str 32 (up to 2^32-1 bytes):
 ```txt
 arr 3 (up to 7 elements):
 +--------+-----+~~~~~~~~+
-|  1000  | XXX |  data  |
+|  0111  | XXX |  data  |
 +--------+-----+~~~~~~~~+
 
 arr 4 (up to 15 elements):
 +--------+------+~~~~~~~~+
-|  1001  | XXXX |  data  |
+|  1000  | XXXX |  data  |
 +--------+------+~~~~~~~~+
 
 arr 8 (up to 255 elements):
 +--------+----------+~~~~~~~~+
-|  1010  | XXXXXXXX |  data  |
+|  1001  | XXXXXXXX |  data  |
 +--------+----------+~~~~~~~~+
 
 arr 16 (up to 2^16-1 elements):
 +--------+----------+----------+~~~~~~~~+
-|  1011  | XXXXXXXX | XXXXXXXX |  data  |
+|  1010  | XXXXXXXX | XXXXXXXX |  data  |
 +--------+----------+----------+~~~~~~~~+
 
 arr 32 (up to 2^32-1 elements):
 +--------+----------+----------+----------+----------+~~~~~~~~+
-|  1100  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
+|  1011  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
 +--------+----------+----------+----------+----------+~~~~~~~~+
 ```
 
@@ -151,16 +148,21 @@ Y = tag_id = XXXXX (5 bits) (can change before release)
 
 tag (id):
 +--------+---+
-|  1101  | Y |
+|  1100  | Y |
 +--------+---+
 
 tag (id, body):
 +--------+---+~~~~~~~~+
-|  1110  | Y |  data  |
+|  1101  | Y |  body  |
 +--------+---+~~~~~~~~+
 
+tag (id, argument):
++--------+---+~~~~~~~~~~~~+
+|  1101  | Y |  argument  |
++--------+---+~~~~~~~~~~~~+
+
 tag (id, body, argument):
-+--------+---+~~~~~~~~+~~~~~~~~+
-|  1111  | Y |  data  |  data  |
-+--------+---+~~~~~~~~+~~~~~~~~+
++--------+---+~~~~~~~~+~~~~~~~~~~~~+
+|  1111  | Y |  data  |  argument  |
++--------+---+~~~~~~~~+~~~~~~~~~~~~+
 ```
