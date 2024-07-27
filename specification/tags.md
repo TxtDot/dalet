@@ -22,7 +22,7 @@ Element also used if no tag is specified.
 **Daletl example (json5 representation)**:
 
 ```json5
-[0, "Dalet"]
+"I am Element"
 ```
 
 ## 1. Heading
@@ -121,13 +121,7 @@ ul: {
 **Daletl example (json5 representation)**:
 
 ```json5
-[
-  4,
-  [
-    [0, "Item 1"],
-    [0, "Item 2"],
-  ],
-]
+[4, ["Item 1", "Item 2"]]
 ```
 
 ## 5. Ordered list
@@ -154,26 +148,19 @@ ol: {
 **Daletl example (json5 representation)**:
 
 ```json5
-[
-  5,
-  [
-    [0, "Item"],
-    [0, "Item"],
-    [0, "Item"],
-  ],
-]
+[5, ["Item", "Item", "Item"]]
 ```
 
 ## 6. Row
 
-| Property | Description                    |
-| -------- | ------------------------------ |
-| name     | row                            |
-| id       | 6                              |
-| body     | tags                           |
-| argument | string (optional); center, end |
+| Property | Description            |
+| -------- | ---------------------- |
+| name     | row                    |
+| id       | 6                      |
+| body     | tags                   |
+| argument | (optional); start, end |
 
-Splits the text into rows.
+Splits the text into rows. The alignment argument specifies how the items inside the row are aligned. By default it is aligned to the center.
 
 **Daleth example**:
 
@@ -183,22 +170,22 @@ row: {
   Right
 }
 
-row[center]: {
+row[start]: {
   Left
   Right
 }
 ```
 
+Argument converts to numbers in daletl.
+
+start -> 0
+end -> 1
+
 **Daletl example (json5 representation)**:
 
 ```json5
-[
-  6,
-  [
-    [0, "Left"],
-    [0, "Right"],
-  ],
-]
+[6, ["Left", "Right"]]
+[6, ["Left", "Right"], 0]
 ```
 
 ## 7. Link
@@ -675,4 +662,58 @@ disc[Click to expand]: I am Disclosure
 
 ```json5
 [25, "I am Disclosure", "Click to expand"]
+```
+
+## 26. Block
+
+| Property | Description |
+| -------- | ----------- |
+| name     | bl          |
+| id       | 26          |
+| body     | text, tags  |
+| argument | start, end  |
+
+Creates block element. Can be used for aligning. By default aligned to center.
+
+**Daleth example**:
+
+```yaml
+bl: I am Block
+```
+
+Argument converts to numbers in daletl.
+
+start -> 0
+end -> 1
+
+**Daletl example (json5 representation)**:
+
+```json5
+[26, "I am Block", 0]
+```
+
+## 27. Carousel
+
+| Property | Description |
+| -------- | ----------- |
+| name     | carousel    |
+| id       | 27          |
+| body     | tags        |
+| argument | no          |
+
+Creates carousel.
+
+**Daleth example**:
+
+```txt
+carousel: {
+  Example 1
+  Example 2,
+}
+```
+
+**Daletl example (json5 representation)**:
+
+```json5
+[27, ["Example 1", "Example 2"]]
 ```
