@@ -4,20 +4,20 @@ DaletPack is an binary data format for Dalet, that is used for minimizing the si
 
 All data must be compressed in [Zstandard](https://datatracker.ietf.org/doc/html/rfc8878) format.
 
-## Types (12)
+## Types (16)
 
-- **Null** (1)
-- **Integer** (1)
+- **Null**
+- **Integer**
 - **String** (6)
-- **Array** (3)
+- **Array** (5)
 - **Tags** (3)
-  - **Tag only with id** (1)
-  - **Tag with id and body** (1)
-  - **Tag with id, body and argument** (1)
+  - **Tag only with id**
+  - **Tag with id and body**
+  - **Tag with id, body and argument**
 
 ## Limitations
 
-- a value of integer (5 bits) must be between -15 and 15
+- a value of integer (4 bits) must be between 0 and 15
 - maximum byte size of a String object is (2^32)-1
 - string must be encoded in UTF-8
 - maximum number of elements of an Array object is (2^32)-1
@@ -75,15 +75,9 @@ variable number of objects stored in DaletPack format:
 ### Integer format
 
 ```txt
-Positive integer:
-+--------+-------+
-|  0001  | 0XXXX |
-+--------+-------+
-
-Negative integer:
-+--------+-------+
-|  0001  | 1XXXX |
-+--------+-------+
++--------+------+
+|  0001  | XXXX |
++--------+------+
 ```
 
 ### String format
