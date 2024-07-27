@@ -36,7 +36,7 @@ All data must be compressed in [Zstandard](https://datatracker.ietf.org/doc/html
 | str 8                    | 5   | 0101    |
 | str 16                   | 6   | 0110    |
 | str 32                   | 7   | 0111    |
-| arr 2                    | 8   | 1000    |
+| arr 3                    | 8   | 1000    |
 | arr 4                    | 9   | 1001    |
 | arr 8                    | 10  | 1010    |
 | arr 16                   | 11  | 1011    |
@@ -44,3 +44,129 @@ All data must be compressed in [Zstandard](https://datatracker.ietf.org/doc/html
 | tag (id)                 | 13  | 1101    |
 | tag (id, body)           | 14  | 1110    |
 | tag (id, body, argument) | 15  | 1111    |
+
+### Notation in diagrams
+
+```txt
+block of bits (max 8 bits):
++--------+
+|        |
++--------+
+
+a variable number of bytes:
++========+
+|        |
++========+
+
+variable number of objects stored in DaletPack format:
++~~~~~~~~~~~~~~~~~+
+|                 |
++~~~~~~~~~~~~~~~~~+
+```
+
+### Null format
+
+```txt
++--------+
+|  0000  |
++--------+
+```
+
+### Integer format
+
+```txt
+Positive integer:
++--------+-------+
+|  0001  | 0XXXX |
++--------+-------+
+
+Negative integer:
++--------+-------+
+|  0001  | 1XXXX |
++--------+-------+
+```
+
+### String format
+
+```txt
+str 3 (up to 7 bytes):
++--------+-----+========+
+|  0010  | XXX |  data  |
++--------+-----+========+
+
+str 4 (up to 15 bytes):
++--------+------+========+
+|  0011  | XXXX |  data  |
++--------+------+========+
+
+str 6 (up to 63 bytes):
++--------+--------+========+
+|  0100  | XXXXXX |  data  |
++--------+--------+========+
+
+str 8 (up to 255 bytes):
++--------+----------+========+
+|  0101  | XXXXXXXX |  data  |
++--------+----------+========+
+
+str 16 (up to 2^16-1 bytes):
++--------+----------+----------+========+
+|  0110  | XXXXXXXX | XXXXXXXX |  data  |
++--------+----------+----------+========+
+
+str 32 (up to 2^32-1 bytes):
++--------+----------+----------+----------+----------+========+
+|  0111  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
++--------+----------+----------+----------+----------+========+
+```
+
+### Array format
+
+```txt
+arr 3 (up to 7 elements):
++--------+-----+~~~~~~~~+
+|  1000  | XXX |  data  |
++--------+-----+~~~~~~~~+
+
+arr 4 (up to 15 elements):
++--------+------+~~~~~~~~+
+|  1001  | XXXX |  data  |
++--------+------+~~~~~~~~+
+
+arr 8 (up to 255 elements):
++--------+----------+~~~~~~~~+
+|  1010  | XXXXXXXX |  data  |
++--------+----------+~~~~~~~~+
+
+arr 16 (up to 2^16-1 elements):
++--------+----------+----------+~~~~~~~~+
+|  1011  | XXXXXXXX | XXXXXXXX |  data  |
++--------+----------+----------+~~~~~~~~+
+
+arr 32 (up to 2^32-1 elements):
++--------+----------+----------+----------+----------+~~~~~~~~+
+|  1100  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  data  |
++--------+----------+----------+----------+----------+~~~~~~~~+
+```
+
+### Tag format
+
+```txt
+
+Y = tag_id = XXXXX (5 bits) (can change)
+
+tag (id):
++--------+---+
+|  1101  | Y |
++--------+---+
+
+tag (id, body):
++--------+---+~~~~~~~~+
+|  1110  | Y |  data  |
++--------+---+~~~~~~~~+
+
+tag (id, body, argument):
++--------+---+~~~~~~~~+~~~~~~~~+
+|  1111  | Y |  data  |  data  |
++--------+---+~~~~~~~~+~~~~~~~~+
+```
