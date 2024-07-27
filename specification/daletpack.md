@@ -147,7 +147,7 @@ arr 32 (up to 2^32-1 elements):
 
 ```txt
 
-Y = tag_id = XXXXX (5 bits) (can change)
+Y = tag_id = XXXXX (5 bits) (can change before release)
 
 tag (id):
 +--------+---+
