@@ -1,0 +1,19 @@
+[package]
+name = "dalet"
+version = "1.0.0-pre0"
+edition = "2021"
+authors = ["artegoser"]
+license = "MIT"
+description = "Dalet implementation in Rust"
+repository = "https://github.com/txtdot/dalet"
+homepage = "https://github.com/TxtDot/dalet/tree/main/libs/rust"
+readme = "./README.md"
+keywords = ["dalet"]
+categories = ["compression", "compilers", "encoding"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+
+[features]
+default = ["types"]
+types = []

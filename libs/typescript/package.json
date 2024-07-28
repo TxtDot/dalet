@@ -1,7 +1,7 @@
 {
   "name": "@txtdot/dalet",
   "version": "1.0.0-pre0",
-  "description": "Dalet realization in typescript",
+  "description": "Dalet implementation in typescript",
   "main": "dist/lib.js",
   "types": "dist/lib.d.ts",
   "files": [
