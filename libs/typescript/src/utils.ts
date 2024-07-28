@@ -5,6 +5,10 @@ export function bodyToRaw(body: CommonBody): Body {
     return null;
   }
 
+  if (typeof body === "string") {
+    return body;
+  }
+
   return body.map((t) => t.raw);
 }
 

@@ -43,6 +43,6 @@ export abstract class CommonTag {
   }
 }
 
-export type CommonBody = CommonTag[] | null;
+export type CommonBody = string | CommonTag[] | null;
 
 export type TagNormalizer = (tag: Tag) => CommonTag;

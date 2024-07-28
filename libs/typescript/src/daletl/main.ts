@@ -11,6 +11,10 @@ export function parseBody(body: Body): CommonBody {
     return null;
   }
 
+  if (typeof body === "string") {
+    return body;
+  }
+
   return body.map((t) => parseTag(t));
 }
 
