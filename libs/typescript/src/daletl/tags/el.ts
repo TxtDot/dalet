@@ -1,13 +1,13 @@
 import { bodyToRaw, chtml } from "../../utils";
-import { RawTag, Tag } from "../types";
+import { CommonTag, Tag } from "../types";
 
-export default class El extends Tag {
-  constructor(body: string | Tag[]) {
+export default class El extends CommonTag {
+  constructor(body: CommonTag[]) {
     super(0, body, null);
   }
 
-  get raw(): RawTag {
-    return bodyToRaw(this.body)!;
+  get raw(): Tag {
+    return { id: this.id, body: bodyToRaw(this.body), argument: null };
   }
 
   toHtml(classes?: boolean): string {

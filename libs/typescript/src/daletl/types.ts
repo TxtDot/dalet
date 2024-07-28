@@ -1,13 +1,15 @@
-import { encode } from "@msgpack/msgpack";
+import { encodeTag } from "../daletpack";
 import { bodyToRaw } from "../utils";
 
-export type RawBody = string | null | RawTag[] | RawTag;
-export type RawId = number;
-export type RawArgument = number | string | null;
-export type RawTagAsArray = [RawId, RawBody, RawArgument] | [RawId, RawBody];
+export type Root = Tag[];
+export type Argument = string | number | null;
+export type Body = Tag[] | null;
 
-export type RawTag = RawTagAsArray | number | string | RawTag[];
-export type RootRaw = RawTag[];
+export interface Tag {
+  id: number;
+  body: Body;
+  argument: Argument;
+}
 
 export class ParseError extends Error {
   constructor(message: string = "Parse error") {
@@ -16,27 +18,24 @@ export class ParseError extends Error {
   }
 }
 
-export abstract class Tag {
+export abstract class CommonTag {
   id: number;
-  body: Body;
+  body: CommonBody;
   argument: Argument;
-  constructor(id: number, body: Body, argument: Argument) {
+  constructor(id: number, body: CommonBody, argument: Argument) {
     this.id = id;
     this.body = body;
     this.argument = argument;
   }
-  get raw(): RawTag {
-    if (this.argument == null) {
-      if (this.body == null) {
-        return this.id;
-      }
-
-      return [this.id, bodyToRaw(this.body)];
-    }
-    return [this.id, bodyToRaw(this.body), this.argument];
+  get raw(): Tag {
+    return {
+      id: this.id,
+      body: bodyToRaw(this.body),
+      argument: this.argument,
+    };
   }
   encode(): Uint8Array {
-    return encode(this.raw);
+    return encodeTag(this.raw);
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   toHtml(classes?: boolean): string {
@@ -44,7 +43,6 @@ export abstract class Tag {
   }
 }
 
-export type Body = string | Tag[] | null;
-export type Argument = RawArgument;
+export type CommonBody = CommonTag[] | null;
 
-export type TagNormalizer = (tag: RawTagAsArray) => Tag;
+export type TagNormalizer = (tag: Tag) => CommonTag;

@@ -1,8 +1,8 @@
 import { chtml } from "../../utils";
-import { Tag } from "../types";
+import { CommonTag } from "../types";
 
-export default class Heading extends Tag {
-  constructor(body: string, argument?: number | null) {
+export default class Heading extends CommonTag {
+  constructor(body: CommonTag[], argument?: number | null) {
     super(1, body, argument || null);
   }
 

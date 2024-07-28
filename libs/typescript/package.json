@@ -39,7 +39,6 @@
     "typescript-eslint": "^7.17.0"
   },
   "dependencies": {
-    "@msgpack/msgpack": "3.0.0-beta2",
     "zod": "^3.23.8"
   }
 }

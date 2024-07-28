@@ -1,20 +1,14 @@
-import { Body, RawBody, RawTag, Tag } from "./daletl/types";
+import { Body, CommonBody, CommonTag, Tag } from "./daletl/types";
 
-export function bodyToRaw(body: Body): RawBody {
-  if (typeof body === "string") {
-    return body;
+export function bodyToRaw(body: CommonBody): Body {
+  if (body === null) {
+    return null;
   }
 
-  if (Array.isArray(body)) {
-    if (Array.isArray(body[0])) {
-      return body.map(getRaw);
-    }
-  }
-
-  return null;
+  return body.map((t) => t.raw);
 }
 
-export function bodyToHtml(body: Body): string {
+export function bodyToHtml(body: CommonBody): string {
   if (typeof body === "string") {
     return body;
   }
@@ -26,7 +20,7 @@ export function bodyToHtml(body: Body): string {
   return "";
 }
 
-export function getRaw(t: Tag): RawTag {
+export function getRaw(t: CommonTag): Tag {
   return t.raw;
 }
 
@@ -38,14 +32,14 @@ export function chtml(
   tag: string,
   classNames: string,
   classes: boolean = true,
-  body?: Body,
+  body?: CommonBody,
   props?: Props
 ) {
   const classProp = classes ? { class: classNames } : {};
   return html(tag, body, { ...props, ...classProp });
 }
 
-function html(tag: string, body?: Body, props?: Props) {
+function html(tag: string, body?: CommonBody, props?: Props) {
   const pr = Object.entries(props || {})
     .map(([key, value]) => `${key}="${value}"`)
     .join(" ");

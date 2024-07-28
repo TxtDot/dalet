@@ -19,12 +19,6 @@ el: { h[1]: I am first level heading }
 Element also used if no tag is specified.
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-"I am Element"
-```
-
 ## 1. Heading
 
 | Property | Description         |
@@ -46,12 +40,6 @@ h[1]: Dalet
     h[3]: Low level
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[1, "Dalet", 1]
-```
-
 ## 2. Paragraph
 
 | Property | Description |
@@ -69,12 +57,6 @@ Paragraph is used for text formatting.
 p: This is a paragraph
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[2, "This is a paragraph"]
-```
-
 ## 3. Line break
 
 | Property | Description |
@@ -90,12 +72,6 @@ Line break is used to insert a line break into the text.
 
 ```yaml
 br
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-3
 ```
 
 ## 4. Unordered list
@@ -118,12 +94,6 @@ ul: {
 }
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[4, ["Item 1", "Item 2"]]
-```
-
 ## 5. Ordered list
 
 | Property | Description |
@@ -143,12 +113,6 @@ ol: {
   Item
   Item
 }
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[5, ["Item", "Item", "Item"]]
 ```
 
 ## 6. Row
@@ -181,13 +145,6 @@ Argument converts to numbers in daletl.
 start -> 0
 end -> 1
 
-**Daletl example (json5 representation)**:
-
-```json5
-[6, ["Left", "Right"]]
-[6, ["Left", "Right"], 0]
-```
-
 ## 7. Link
 
 | Property | Description |
@@ -203,12 +160,6 @@ Link to other sites. On click the link opens in new tab.
 
 ```yaml
 link[https://example.com]: I am Link
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[7, "I am Link", "https://example.com"]
 ```
 
 ## 8. Navlink
@@ -228,12 +179,6 @@ Link to the same site. On click the link opens in current tab.
 navlink[/specification]: I am Navlink
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[8, "I am Navlink", "/specification"]
-```
-
 ## 9. Button
 
 | Property | Description |
@@ -249,12 +194,6 @@ Same as link, but with button style.
 
 ```yaml
 btn[https://example.com]: I am Button
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[9, "I am Button", "https://example.com"]
 ```
 
 ## 10. NavButton
@@ -274,12 +213,6 @@ Same as navlink, but with button style.
 navbtn[https://example.com]: I am NavButton
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[10, "I am NavButton", "https://example.com"]
-```
-
 ## 11. Image
 
 | Property | Description |
@@ -295,12 +228,6 @@ Displays an image.
 
 ```yaml
 img[/dalet.png]
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[11, null, "/dalet.png"]
 ```
 
 ## 12. Table
@@ -323,30 +250,6 @@ table: {
 }
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[
-  12,
-  [
-    [
-      13,
-      [
-        [0, "Name"],
-        [0, "Age"],
-      ],
-    ],
-    [
-      13,
-      [
-        [0, "Elon"],
-        [0, "53"],
-      ],
-    ],
-  ],
-]
-```
-
 ## 13. Table Column
 
 | Property | Description |
@@ -365,18 +268,6 @@ tcol: {
   Name
   Age
 }
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[
-  13,
-  [
-    [0, "Name"],
-    [0, "Age"],
-  ],
-]
 ```
 
 ## 14. Table Primary Column
@@ -399,18 +290,6 @@ tpcol: {
 }
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[
-  14,
-  [
-    [0, "Name"],
-    [0, "Age"],
-  ],
-]
-```
-
 ## 15. Horizontal rule
 
 | Property | Description |
@@ -426,12 +305,6 @@ Creates a horizontal rule.
 
 ```yaml
 hr
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-15
 ```
 
 ## 16. Bold
@@ -451,12 +324,6 @@ Creates **bold** text.
 b: I am Bold
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[16, "I am Bold"]
-```
-
 ## 17. Italic
 
 | Property | Description |
@@ -472,12 +339,6 @@ Creates _italic_ text.
 
 ```yaml
 i: I am Italic
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[17, "I am Italic"]
 ```
 
 ## 18. Blockquote
@@ -497,12 +358,6 @@ Creates a blockquote.
 bq: I am Blockquote
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[18, "I am Blockquote"]
-```
-
 ## 19. Footnote Link
 
 | Property | Description    |
@@ -518,12 +373,6 @@ Link to footnote.
 
 ```yaml
 footlnk[1]
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[19, null, 1]
 ```
 
 ## 20. Footnote
@@ -543,12 +392,6 @@ Creates footnote.
 footn[1]: I am Footnote
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[20, "I am Footnote", 1]
-```
-
 ## 21. Anchor
 
 | Property | Description    |
@@ -564,12 +407,6 @@ Creates anchor. Like `<a href="#argument"></a>` in HTML.
 
 ```yaml
 a[0]
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[21, null, 0]
 ```
 
 ## 22. Strikethrough
@@ -589,12 +426,6 @@ Creates ~~strikethrough~~ text.
 s: I am Strikethrough
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[22, "I am Strikethrough"]
-```
-
 ## 23. Superscript
 
 | Property | Description |
@@ -610,12 +441,6 @@ Creates ^superscript^ text.
 
 ```yaml
 sup: I am Superscript
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[23, "I am Superscript"]
 ```
 
 ## 24. Subscript
@@ -635,12 +460,6 @@ Creates ~subscript~ text.
 sub: I am Subscript
 ```
 
-**Daletl example (json5 representation)**:
-
-```json5
-[24, "I am Subscript"]
-```
-
 ## 25. Disclosure
 
 | Property | Description |
@@ -656,12 +475,6 @@ Creates disclosure element.
 
 ```yaml
 disc[Click to expand]: I am Disclosure
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[25, "I am Disclosure", "Click to expand"]
 ```
 
 ## 26. Block
@@ -686,12 +499,6 @@ Argument converts to numbers in daletl.
 start -> 0
 end -> 1
 
-**Daletl example (json5 representation)**:
-
-```json5
-[26, "I am Block", 0]
-```
-
 ## 27. Carousel
 
 | Property | Description |
@@ -710,10 +517,4 @@ carousel: {
   Example 1
   Example 2,
 }
-```
-
-**Daletl example (json5 representation)**:
-
-```json5
-[27, ["Example 1", "Example 2"]]
 ```

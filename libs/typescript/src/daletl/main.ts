@@ -1,76 +1,36 @@
-import { encode, decode } from "@msgpack/msgpack";
-import {
-  ParseError,
-  RawTag,
-  Tag,
-  RawTagAsArray,
-  RawBody,
-  Body,
-  RootRaw,
-} from "./types";
-import El from "./tags/el";
+import { encode, decode } from "../daletpack";
+import { ParseError, CommonTag, Body, Root, Tag, CommonBody } from "./types";
 import { TagNormalizers } from "./normalizers";
 
-export function parseTag(raw_tag: RawTag): Tag {
-  if (typeof raw_tag === "string") {
-    return new El(raw_tag);
-  }
-
-  if (Array.isArray(raw_tag)) {
-    if (Array.isArray(raw_tag[0])) {
-      raw_tag = raw_tag as RawTag[];
-      return new El(raw_tag.map(parseTag));
-    }
-
-    if (typeof raw_tag[0] === "number") {
-      return TagNormalizers[(raw_tag as RawTagAsArray)[0]](
-        raw_tag as RawTagAsArray
-      );
-    }
-  }
-
-  throw new ParseError("Invalid tag");
+export function parseTag(tag: Tag): CommonTag {
+  return TagNormalizers[tag.id](tag);
 }
 
-export function parseBody(body: RawBody): Body {
-  if (typeof body === "string") {
-    return body;
-  }
-
+export function parseBody(body: Body): CommonBody {
   if (body === null) {
     return null;
   }
 
-  if (Array.isArray(body)) {
-    if (Array.isArray(body[0])) {
-      return body.map((t) => parseTag(t as RawTag));
-    }
-
-    if (typeof body[0] === "number") {
-      return [parseTag(body)];
-    }
-  }
-
-  throw new ParseError("Invalid tag body");
+  return body.map((t) => parseTag(t));
 }
 
-export function parse(root_data: Uint8Array): Root {
+export function parse(root_data: Uint8Array): RootClass {
   const root = decode(root_data);
 
   if (!Array.isArray(root)) {
     throw new ParseError("Daletl root must be array");
   }
 
-  return new Root(root.map(parseTag));
+  return new RootClass(root.map(parseTag));
 }
 
-export class Root {
-  root: Tag[];
-  constructor(root: Tag[]) {
+export class RootClass {
+  root: CommonTag[];
+  constructor(root: CommonTag[]) {
     this.root = root;
   }
 
-  get raw(): RootRaw {
+  get raw(): Root {
     return this.root.map((t) => t.raw);
   }
 
