@@ -3,7 +3,7 @@ import { bodyToRaw } from "../utils";
 
 export type Root = Tag[];
 export type Argument = string | number | null;
-export type Body = Tag[] | null;
+export type Body = string | Tag[] | null;
 
 export interface Tag {
   id: number;

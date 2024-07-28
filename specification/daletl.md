@@ -21,7 +21,7 @@ All tags specification is in [Tags](./tags.md).
 ```typescript
 interface Tag {
   id: number;
-  body: Tag[] | null;
+  body: string | Tag[] | null;
   argument: string | number | null;
 }
 ```

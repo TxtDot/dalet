@@ -16,7 +16,7 @@ impl Tag {
 #[derive(Debug)]
 pub enum Body {
     Text(String),
-    Tag(Box<Tag>),
+    Tags(Vec<Tag>),
     Null,
 }
 
@@ -27,8 +27,8 @@ impl Serialize for Body {
     {
         match *self {
             Body::Text(ref text) => serializer.serialize_str(text),
-            Body::Tag(ref tag) => tag.serialize(serializer),
-            Body::Null => serializer.serialize_str("null"),
+            Body::Tags(ref tag) => tag.serialize(serializer),
+            Body::Null => serializer.serialize_none(),
         }
     }
 }
@@ -48,7 +48,7 @@ impl Serialize for Argument {
         match *self {
             Argument::Text(ref text) => serializer.serialize_str(text),
             Argument::Number(number) => serializer.serialize_i8(number),
-            Argument::Null => serializer.serialize_str("null"),
+            Argument::Null => serializer.serialize_none(),
         }
     }
 }
