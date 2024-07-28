@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "dalet"
-version = "1.0.0-pre0"
+version = "1.0.0-pre1"
 dependencies = [
  "serde",
 ]
