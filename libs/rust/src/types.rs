@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Debug, Clone)]
 pub struct Tag {
     id: i8,
     body: Body,
@@ -13,7 +13,7 @@ impl Tag {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Body {
     Text(String),
     Tags(Vec<Tag>),
@@ -33,7 +33,7 @@ impl Serialize for Body {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Argument {
     Text(String),
     Number(i8),
