@@ -17,6 +17,10 @@ impl Tag {
     }
 }
 
+pub fn t_new(id: Tid, body: Body, argument: Argument) -> Tag {
+    Tag::new(id, body, argument)
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(untagged)]
 pub enum Body {
@@ -29,7 +33,7 @@ pub enum Body {
 #[serde(untagged)]
 pub enum Argument {
     Text(String),
-    Number(i8),
+    Number(u8),
     Null,
 }
 

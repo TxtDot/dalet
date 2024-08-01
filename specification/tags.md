@@ -152,7 +152,7 @@ end -> 1
 | name     | link        |
 | id       | 7           |
 | body     | any         |
-| argument | string      |
+| argument | text        |
 
 Link to other sites. On click the link opens in new tab.
 
@@ -169,7 +169,7 @@ link[https://example.com]: I am Link
 | name     | navlink     |
 | id       | 8           |
 | body     | any         |
-| argument | string      |
+| argument | text        |
 
 Link to the same site. On click the link opens in current tab.
 
@@ -186,7 +186,7 @@ navlink[/specification]: I am Navlink
 | name     | btn         |
 | id       | 9           |
 | body     | any         |
-| argument | string      |
+| argument | text        |
 
 Same as link, but with button style.
 
@@ -203,7 +203,7 @@ btn[https://example.com]: I am Button
 | name     | navbtn      |
 | id       | 9           |
 | body     | any         |
-| argument | string      |
+| argument | text        |
 
 Same as navlink, but with button style.
 
@@ -220,7 +220,7 @@ navbtn[https://example.com]: I am NavButton
 | name     | img         |
 | id       | 11          |
 | body     | no          |
-| argument | string      |
+| argument | text        |
 
 Displays an image.
 
@@ -365,7 +365,7 @@ bq: I am Blockquote
 | name     | footlnk        |
 | id       | 19             |
 | body     | no             |
-| argument | string, number |
+| argument | text  , number |
 
 Link to footnote.
 
@@ -382,7 +382,7 @@ footlnk[1]
 | name     | footn          |
 | id       | 20             |
 | body     | text           |
-| argument | string, number |
+| argument | text  , number |
 
 Creates footnote.
 
@@ -399,7 +399,7 @@ footn[1]: I am Footnote
 | name     | a              |
 | id       | 21             |
 | body     | no             |
-| argument | string, number |
+| argument | text  , number |
 
 Creates anchor. Like `<a href="#argument"></a>` in HTML.
 
@@ -467,7 +467,7 @@ sub: I am Subscript
 | name     | disc        |
 | id       | 25          |
 | body     | text, tags  |
-| argument | string      |
+| argument | text        |
 
 Creates disclosure element.
 
