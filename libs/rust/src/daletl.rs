@@ -5,9 +5,9 @@ use num_enum::TryFromPrimitive;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 pub struct Tag {
-    id: Tid,
-    body: Body,
-    argument: Argument,
+    pub id: Tid,
+    pub body: Body,
+    pub argument: Argument,
 }
 
 impl Tag {
@@ -21,6 +21,10 @@ pub fn t_new(id: Tid, body: Body, argument: Argument) -> Tag {
     Tag::new(id, body, argument)
 }
 
+pub trait IsNull {
+    fn is_null(&self) -> bool;
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(untagged)]
 pub enum Body {
@@ -29,12 +33,30 @@ pub enum Body {
     Null,
 }
 
+impl IsNull for Body {
+    fn is_null(&self) -> bool {
+        match self {
+            Self::Null => true,
+            _ => false,
+        }
+    }
+}
+
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 #[serde(untagged)]
 pub enum Argument {
     Text(String),
     Number(u8),
     Null,
+}
+
+impl IsNull for Argument {
+    fn is_null(&self) -> bool {
+        match self {
+            Self::Null => true,
+            _ => false,
+        }
+    }
 }
 
 #[derive(Serialize_repr, Deserialize_repr, Debug, Clone, PartialEq, Eq, TryFromPrimitive)]

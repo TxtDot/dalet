@@ -2,8 +2,8 @@ use num_enum::TryFromPrimitive;
 
 use crate::daletl::{self, t_new, Tid};
 
-const BN: daletl::Body = daletl::Body::Null;
-const AN: daletl::Argument = daletl::Argument::Null;
+const NB: daletl::Body = daletl::Body::Null;
+const NA: daletl::Argument = daletl::Argument::Null;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Tag {
@@ -37,6 +37,10 @@ pub enum Tag {
     Carousel(Vec<Tag>),
 }
 
+pub trait ToDaletl {
+    fn to_daletl(self) -> Vec<daletl::Tag>;
+}
+
 pub trait ToDaletlTag {
     fn to_daletl_tag(self) -> daletl::Tag;
 }
@@ -44,34 +48,34 @@ pub trait ToDaletlTag {
 impl ToDaletlTag for Tag {
     fn to_daletl_tag(self) -> daletl::Tag {
         match self {
-            Tag::El(b) => t_new(Tid::El, b.to_daletl_body(), AN),
+            Tag::El(b) => t_new(Tid::El, b.to_daletl_body(), NA),
             Tag::H(b, a) => t_new(Tid::H, b.to_daletl_body(), a.to_daletl_argument()),
-            Tag::P(b) => t_new(Tid::P, b.to_daletl_body(), AN),
-            Tag::Br => t_new(Tid::Br, BN, AN),
-            Tag::Ul(b) => t_new(Tid::Ul, b.to_daletl_body(), AN),
-            Tag::Ol(b) => t_new(Tid::Ol, b.to_daletl_body(), AN),
+            Tag::P(b) => t_new(Tid::P, b.to_daletl_body(), NA),
+            Tag::Br => t_new(Tid::Br, NB, NA),
+            Tag::Ul(b) => t_new(Tid::Ul, b.to_daletl_body(), NA),
+            Tag::Ol(b) => t_new(Tid::Ol, b.to_daletl_body(), NA),
             Tag::Row(b, a) => t_new(Tid::Row, b.to_daletl_body(), a.to_daletl_argument()),
             Tag::Link(b, a) => t_new(Tid::Link, b.to_daletl_body(), a.to_daletl_argument()),
             Tag::Navlink(b, a) => t_new(Tid::Navlink, b.to_daletl_body(), a.to_daletl_argument()),
             Tag::Btn(b, a) => t_new(Tid::Btn, b.to_daletl_body(), a.to_daletl_argument()),
             Tag::Navbtn(b, a) => t_new(Tid::Navbtn, b.to_daletl_body(), a.to_daletl_argument()),
-            Tag::Img(a) => t_new(Tid::Img, BN, a.to_daletl_argument()),
-            Tag::Table(b) => t_new(Tid::Table, b.to_daletl_body(), AN),
-            Tag::Tcol(b) => t_new(Tid::Tcol, b.to_daletl_body(), AN),
-            Tag::Tpcol(b) => t_new(Tid::Tpcol, b.to_daletl_body(), AN),
-            Tag::Hr => t_new(Tid::Hr, BN, AN),
-            Tag::B(b) => t_new(Tid::B, b.to_daletl_body(), AN),
-            Tag::I(b) => t_new(Tid::I, b.to_daletl_body(), AN),
-            Tag::Bq(b) => t_new(Tid::Bq, b.to_daletl_body(), AN),
-            Tag::Footlnk(a) => t_new(Tid::Footlnk, BN, a.to_daletl_argument()),
+            Tag::Img(a) => t_new(Tid::Img, NB, a.to_daletl_argument()),
+            Tag::Table(b) => t_new(Tid::Table, b.to_daletl_body(), NA),
+            Tag::Tcol(b) => t_new(Tid::Tcol, b.to_daletl_body(), NA),
+            Tag::Tpcol(b) => t_new(Tid::Tpcol, b.to_daletl_body(), NA),
+            Tag::Hr => t_new(Tid::Hr, NB, NA),
+            Tag::B(b) => t_new(Tid::B, b.to_daletl_body(), NA),
+            Tag::I(b) => t_new(Tid::I, b.to_daletl_body(), NA),
+            Tag::Bq(b) => t_new(Tid::Bq, b.to_daletl_body(), NA),
+            Tag::Footlnk(a) => t_new(Tid::Footlnk, NB, a.to_daletl_argument()),
             Tag::Footn(b, a) => t_new(Tid::Footn, b.to_daletl_body(), a.to_daletl_argument()),
-            Tag::A(a) => t_new(Tid::A, BN, a.to_daletl_argument()),
-            Tag::S(b) => t_new(Tid::S, b.to_daletl_body(), AN),
-            Tag::Sup(b) => t_new(Tid::Sup, b.to_daletl_body(), AN),
-            Tag::Sub(b) => t_new(Tid::Sub, b.to_daletl_body(), AN),
-            Tag::Disc(b) => t_new(Tid::Disc, b.to_daletl_body(), AN),
+            Tag::A(a) => t_new(Tid::A, NB, a.to_daletl_argument()),
+            Tag::S(b) => t_new(Tid::S, b.to_daletl_body(), NA),
+            Tag::Sup(b) => t_new(Tid::Sup, b.to_daletl_body(), NA),
+            Tag::Sub(b) => t_new(Tid::Sub, b.to_daletl_body(), NA),
+            Tag::Disc(b) => t_new(Tid::Disc, b.to_daletl_body(), NA),
             Tag::Bl(b, a) => t_new(Tid::Bl, b.to_daletl_body(), a.to_daletl_argument()),
-            Tag::Carousel(b) => t_new(Tid::Disc, b.to_daletl_body(), AN),
+            Tag::Carousel(b) => t_new(Tid::Carousel, b.to_daletl_body(), NA),
         }
     }
 }
@@ -102,7 +106,7 @@ pub enum HeadingLevel {
 impl ToDaletlArgument for HeadingLevel {
     fn to_daletl_argument(self) -> daletl::Argument {
         match self {
-            HeadingLevel::One => 1u8.to_daletl_argument(),
+            HeadingLevel::One => NA,
             HeadingLevel::Two => 2u8.to_daletl_argument(),
             HeadingLevel::Three => 3u8.to_daletl_argument(),
             HeadingLevel::Four => 4u8.to_daletl_argument(),
@@ -127,7 +131,7 @@ pub enum AlignArgument {
 impl ToDaletlArgument for AlignArgument {
     fn to_daletl_argument(self) -> daletl::Argument {
         match self {
-            Self::Start => 0u8.to_daletl_argument(),
+            Self::Start => NA,
             Self::Center => 1u8.to_daletl_argument(),
             Self::End => 2u8.to_daletl_argument(),
         }
@@ -159,7 +163,7 @@ pub enum Body {
 impl ToDaletlBody for Body {
     fn to_daletl_body(self) -> daletl::Body {
         match self {
-            Body::Null => daletl::Body::Null,
+            Body::Null => NB,
             Body::Tags(v) => v.to_daletl_body(),
             Body::Text(v) => v.to_daletl_body(),
         }
@@ -176,7 +180,7 @@ pub enum Argument {
 impl ToDaletlArgument for Argument {
     fn to_daletl_argument(self) -> daletl::Argument {
         match self {
-            Argument::Null => daletl::Argument::Null,
+            Argument::Null => NA,
             Argument::Number(v) => v.to_daletl_argument(),
             Argument::Text(v) => v.to_daletl_argument(),
         }
@@ -215,7 +219,13 @@ impl ToDaletlBody for NotNullBody {
 
 impl ToDaletlBody for Vec<Tag> {
     fn to_daletl_body(self) -> daletl::Body {
-        daletl::Body::Tags(self.into_iter().map(|tag| tag.to_daletl_tag()).collect())
+        daletl::Body::Tags(self.to_daletl())
+    }
+}
+
+impl ToDaletl for Vec<Tag> {
+    fn to_daletl(self) -> Vec<daletl::Tag> {
+        self.into_iter().map(|tag| tag.to_daletl_tag()).collect()
     }
 }
 
