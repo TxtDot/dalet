@@ -2,7 +2,7 @@
 
 ## Daletl
 
-Daletl is data representation for Dalet interfaces. [DaletPack](./daletpack.md) serializes/deserializes into Daletl.
+Daletl is data representation of serialized/deserialized [DaletPack](./daletpack.md).
 
 Daletl must be serialized as [DaletPack](./daletpack.md). All data transfer between server and client is done in this format.
 
