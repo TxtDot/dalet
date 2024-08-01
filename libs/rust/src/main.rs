@@ -1,6 +1,10 @@
-use dalet::{Argument, Body, Tag};
+use dalet::daletl::{Argument, Body, Tag, Tid};
 
 fn main() {
-    let _ = Tag::new(1, Body::Text("I am Heading".to_string()), Argument::Null);
+    let _ = Tag::new(
+        Tid::H,
+        Body::Text("I am Heading".to_string()),
+        Argument::Null,
+    );
     println!("Hello, world!");
 }

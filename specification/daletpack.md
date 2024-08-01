@@ -10,8 +10,7 @@ Mime type: `application/dalet-pack`
 
 ## Types
 
-- **Null**
-- **Integer**
+- **Integer** (2)
 - **String** (5)
 - **Tag array**
 - **Tags** (4)
@@ -22,7 +21,7 @@ Mime type: `application/dalet-pack`
 
 ## Limitations
 
-- a value of integer (4 bits) must be between 0 and 15
+- a value of integer must be between 0 and 255
 - maximum byte size of a String object is (2^32)
 - string must be encoded in UTF-8
 - maximum number of elements of a tag array object is (2^32)
@@ -33,8 +32,8 @@ Mime type: `application/dalet-pack`
 
 | name                     | id  | id-bits |
 | ------------------------ | --- | ------- |
-| null                     | 0   | 0000    |
-| int                      | 1   | 0001    |
+| int 4                    | 0   | 0000    |
+| int 8                    | 1   | 0001    |
 | str 3                    | 2   | 0010    |
 | str 4                    | 3   | 0011    |
 | str 8                    | 4   | 0100    |
@@ -64,22 +63,20 @@ variable number of objects stored in DaletPack format:
 +~~~~~~~~~~~~~~~~~+
 |                 |
 +~~~~~~~~~~~~~~~~~+
-```
 
-### Null format
-
-```txt
-+--------+
-|  0000  |
-+--------+
+X - unknown bit
 ```
 
 ### Integer format
 
 ```txt
 +--------+------+
-|  0001  | XXXX |
+|  0000  | XXXX |
 +--------+------+
+
++--------+----------+
+|  0001  | XXXXXXXX |
++--------+----------+
 ```
 
 ### String format
@@ -88,7 +85,7 @@ variable number of objects stored in DaletPack format:
 str 3 (up to 8 bytes):
 +--------+-----+=========+
 |  0010  | XXX |  utf-8  |
-+--------+-----+========+
++--------+-----+=========+
 
 str 4 (up to 16 bytes):
 +--------+------+=========+

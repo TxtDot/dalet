@@ -117,15 +117,15 @@ ol: {
 
 ## 6. Row
 
-| Property | Description            |
-| -------- | ---------------------- |
-| name     | row                    |
-| id       | 6                      |
-| body     | tags                   |
-| argument | (optional); start, end |
+| Property | Description                  |
+| -------- | ---------------------------- |
+| name     | row                          |
+| id       | 6                            |
+| body     | tags                         |
+| argument | optional; start, center, end |
 
-Splits the text into rows. The alignment argument specifies how the items inside the row are aligned. By default it is aligned to the center.
-
+Splits the text into rows. The alignment argument specifies how the items inside the row are aligned. By default it is aligned to the start.
+m
 **Daleth example**:
 
 ```txt
@@ -151,7 +151,7 @@ end -> 1
 | -------- | ----------- |
 | name     | link        |
 | id       | 7           |
-| body     | text, tags  |
+| body     | any         |
 | argument | string      |
 
 Link to other sites. On click the link opens in new tab.
@@ -168,7 +168,7 @@ link[https://example.com]: I am Link
 | -------- | ----------- |
 | name     | navlink     |
 | id       | 8           |
-| body     | text, tags  |
+| body     | any         |
 | argument | string      |
 
 Link to the same site. On click the link opens in current tab.
@@ -185,7 +185,7 @@ navlink[/specification]: I am Navlink
 | -------- | ----------- |
 | name     | btn         |
 | id       | 9           |
-| body     | text,tags   |
+| body     | any         |
 | argument | string      |
 
 Same as link, but with button style.
@@ -202,7 +202,7 @@ btn[https://example.com]: I am Button
 | -------- | ----------- |
 | name     | navbtn      |
 | id       | 9           |
-| body     | text,tags   |
+| body     | any         |
 | argument | string      |
 
 Same as navlink, but with button style.
@@ -479,12 +479,12 @@ disc[Click to expand]: I am Disclosure
 
 ## 26. Block
 
-| Property | Description |
-| -------- | ----------- |
-| name     | bl          |
-| id       | 26          |
-| body     | text, tags  |
-| argument | start, end  |
+| Property | Description                   |
+| -------- | ----------------------------- |
+| name     | bl                            |
+| id       | 26                            |
+| body     | text, tags                    |
+| argument | optional; start, center, end  |
 
 Creates block element. Can be used for aligning. By default aligned to center.
 
