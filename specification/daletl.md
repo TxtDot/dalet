@@ -4,8 +4,6 @@
 
 Daletl is data representation of serialized/deserialized [DaletPack](./daletpack.md).
 
-Daletl must be serialized as [DaletPack](./daletpack.md). All data transfer between server and client is done in this format.
-
 ### Root
 
 Daletl root is array of tags. For convenience, we will use the typescript notation.

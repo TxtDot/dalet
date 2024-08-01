@@ -1,6 +1,8 @@
 # DaletPack specification for Dalet v1.0-preview
 
-DaletPack is an binary data format for Dalet, that is used for minimizing the size of transmitted daletl data. DaletPack is designed specifically to transfer as little data as possible, it compresses the declaration of tag types into the smallest possible volume. Nothing unnecessary is transferred.
+DaletPack is an binary data format for Dalet, that is used for minimizing the size of transmitted data. DaletPack is designed specifically to transfer as little data as possible, it compresses the declaration of tag types into the smallest possible volume. Nothing unnecessary is transferred.
+
+All apps that supports Dalet must use this format when transmitting data between hosts.
 
 All data must be compressed with [zstd](https://datatracker.ietf.org/doc/html/rfc8878).
 
