@@ -1,8 +1,13 @@
-use crate::daletl::{Argument, Body, IsNull, Tag};
+use crate::daletl::{Argument, Body, IsNull, Tag, Tid};
 
 use super::{DaletPackError, TypeId};
 
 pub fn encode(root: &Vec<Tag>) -> Result<Vec<u8>, DaletPackError> {
+    Ok(zstd::bulk::compress(&encode_no_compress(root)?, 5)
+        .map_err(|_| DaletPackError::ZstdCompressError)?)
+}
+
+pub fn encode_no_compress(root: &Vec<Tag>) -> Result<Vec<u8>, DaletPackError> {
     if root.len() > 2usize.pow(32) {
         return Err(DaletPackError::RootMaxSizeExceeded);
     }
@@ -13,7 +18,6 @@ pub fn encode(root: &Vec<Tag>) -> Result<Vec<u8>, DaletPackError> {
         write_tag(&mut bv, tag)?;
     }
 
-    // Ok(zstd::bulk::compress(&bv, 200).map_err(|_| DaletPackError::ZstdCompressError)?)
     Ok(bv)
 }
 
@@ -62,7 +66,9 @@ fn write_array(bv: &mut Vec<u8>, arr: &Vec<Tag>) -> Result<(), DaletPackError> {
 }
 
 fn write_tag(bv: &mut Vec<u8>, tag: &Tag) -> Result<(), DaletPackError> {
-    if tag.body.is_null() && tag.argument.is_null() {
+    if tag.id == Tid::El {
+        write_tag_body(bv, &tag.body)?;
+    } else if tag.body.is_null() && tag.argument.is_null() {
         bv.push(TypeId::TagId as u8);
         bv.push(tag.id as u8);
     } else if tag.argument.is_null() {
@@ -87,7 +93,7 @@ fn write_tag_body(bv: &mut Vec<u8>, body: &Body) -> Result<(), DaletPackError> {
     match body {
         Body::Text(s) => write_str(bv, s)?,
         Body::Tags(tags) => write_array(bv, tags)?,
-        Body::Null => unreachable!("Tag cannot be called with this value"),
+        Body::Null => Err(DaletPackError::WriteNullBody)?,
     };
 
     Ok(())
@@ -97,7 +103,7 @@ fn write_tag_argument(bv: &mut Vec<u8>, argument: &Argument) -> Result<(), Dalet
     match argument {
         Argument::Text(s) => write_str(bv, s)?,
         Argument::Number(n) => write_int(bv, *n),
-        Argument::Null => unreachable!("Tag cannot be called with this value"),
+        Argument::Null => Err(DaletPackError::WriteNullArgument)?,
     };
 
     Ok(())

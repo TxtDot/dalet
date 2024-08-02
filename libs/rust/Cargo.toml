@@ -12,6 +12,7 @@ keywords = ["dalet"]
 categories = ["compression", "compilers", "encoding"]
 
 [dependencies]
+clap = { version = "4.5.13", features = ["derive"] }
 num_enum = "0.7.3"
 serde = { version = "1.0", features = ["derive"] }
 serde_repr = "0.1"

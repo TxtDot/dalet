@@ -91,4 +91,5 @@ pub enum Tid {
     Disc,
     Bl,
     Carousel,
+    Code,
 }

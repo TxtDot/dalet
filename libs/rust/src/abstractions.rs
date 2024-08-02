@@ -35,6 +35,7 @@ pub enum Tag {
     Disc(NotNullBody),
     Bl(NotNullBody, AlignArgument),
     Carousel(Vec<Tag>),
+    Code(String, TextOrNullArgument),
 }
 
 pub trait ToDaletl {
@@ -76,6 +77,7 @@ impl ToDaletlTag for Tag {
             Tag::Disc(b) => t_new(Tid::Disc, b.to_daletl_body(), NA),
             Tag::Bl(b, a) => t_new(Tid::Bl, b.to_daletl_body(), a.to_daletl_argument()),
             Tag::Carousel(b) => t_new(Tid::Carousel, b.to_daletl_body(), NA),
+            Tag::Code(s, a) => t_new(Tid::Code, s.to_daletl_body(), a.to_daletl_argument()),
         }
     }
 }
@@ -91,16 +93,12 @@ pub trait ToDaletlArgument {
 #[derive(Debug, Clone, PartialEq, Eq, TryFromPrimitive)]
 #[repr(u8)]
 pub enum HeadingLevel {
-    One,
+    One = 1,
     Two,
     Three,
     Four,
     Five,
     Six,
-    Seven,
-    Eight,
-    Nine,
-    Ten,
 }
 
 impl ToDaletlArgument for HeadingLevel {
@@ -112,10 +110,6 @@ impl ToDaletlArgument for HeadingLevel {
             HeadingLevel::Four => 4u8.to_daletl_argument(),
             HeadingLevel::Five => 5u8.to_daletl_argument(),
             HeadingLevel::Six => 6u8.to_daletl_argument(),
-            HeadingLevel::Seven => 7u8.to_daletl_argument(),
-            HeadingLevel::Eight => 8u8.to_daletl_argument(),
-            HeadingLevel::Nine => 9u8.to_daletl_argument(),
-            HeadingLevel::Ten => 10u8.to_daletl_argument(),
         }
     }
 }
@@ -149,6 +143,21 @@ impl ToDaletlArgument for TextOrNumberArgument {
         match self {
             Self::Number(n) => n.to_daletl_argument(),
             Self::Text(s) => s.to_daletl_argument(),
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum TextOrNullArgument {
+    Text(String),
+    Null,
+}
+
+impl ToDaletlArgument for TextOrNullArgument {
+    fn to_daletl_argument(self) -> daletl::Argument {
+        match self {
+            Self::Text(s) => s.to_daletl_argument(),
+            Self::Null => NA,
         }
     }
 }

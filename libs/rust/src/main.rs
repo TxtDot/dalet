@@ -1,1 +1,3 @@
+mod commands;
+
 fn main() {}

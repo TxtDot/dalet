@@ -26,7 +26,7 @@ Element also used if no tag is specified.
 | name     | h                   |
 | id       | 1                   |
 | body     | text                |
-| argument | int x; 1 <= x <= 10 |
+| argument | int x; 1 <= x <= 6  |
 
 Heading is used for text formatting.
 
@@ -517,4 +517,21 @@ carousel: {
   Example 1
   Example 2,
 }
+```
+
+## 28. Code
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | code           |
+| id       | 28             |
+| body     | text           |
+| argument | optional; text |
+
+Creates code block.
+
+**Daleth example**:
+
+```txt
+code[js]: let code = "js"
 ```

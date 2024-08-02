@@ -1,6 +1,6 @@
 # DaletPack specification for Dalet v1.0-preview
 
-DaletPack is an binary data format for Dalet, that is used for minimizing the size of transmitted data. DaletPack is designed specifically to transfer as little data as possible, it compresses the declaration of tag types into the smallest possible volume. Nothing unnecessary is transferred.
+DaletPack is an binary data format for Dalet, that is used for minimizing the size of transmitted data. DaletPack is designed specifically to transfer as little data as possible, it compresses the declaration of tag types into the optimal possible volume.
 
 All apps that supports Dalet must use this format when transmitting data between hosts.
 
@@ -12,8 +12,8 @@ Mime type: `application/dalet-pack`
 
 ## Types
 
-- **Integer** (2)
-- **String** (5)
+- **Integer**
+- **String** (3)
 - **Tag array**
 - **Tags** (4)
   - **Tag (id)**
@@ -32,26 +32,23 @@ Mime type: `application/dalet-pack`
 
 ### Overview
 
-| name                     | id  | id-bits |
-| ------------------------ | --- | ------- |
-| int 4                    | 0   | 0000    |
-| int 8                    | 1   | 0001    |
-| str 3                    | 2   | 0010    |
-| str 4                    | 3   | 0011    |
-| str 8                    | 4   | 0100    |
-| str 16                   | 5   | 0101    |
-| str 32                   | 6   | 0110    |
-| tag array                | 7   | 0111    |
-| tag array end            | no  | 10      |
-| tag (id)                 | 12  | 1100    |
-| tag (id, body)           | 13  | 1101    |
-| tag (id, argument)       | 14  | 1110    |
-| tag (id, body, argument) | 15  | 1111    |
+| name                     | id  |
+| ------------------------ | --- |
+| int 8                    | 1   |
+| str 8                    | 4   |
+| str 16                   | 5   |
+| str 32                   | 6   |
+| tag array                | 7   |
+| tag array end            | 8   |
+| tag (id)                 | 12  |
+| tag (id, body)           | 13  |
+| tag (id, argument)       | 14  |
+| tag (id, body, argument) | 15  |
 
 ### Notation in diagrams
 
 ```txt
-block of bits (max 8 bits):
+byte:
 +--------+
 |        |
 +--------+
@@ -72,41 +69,28 @@ X - unknown bit
 ### Integer format
 
 ```txt
-+--------+------+
-|  0000  | XXXX |
-+--------+------+
-
 +--------+----------+
-|  0001  | XXXXXXXX |
+|     1  | XXXXXXXX |
 +--------+----------+
 ```
 
 ### String format
 
 ```txt
-str 3 (up to 8 bytes):
-+--------+-----+=========+
-|  0010  | XXX |  utf-8  |
-+--------+-----+=========+
-
-str 4 (up to 16 bytes):
-+--------+------+=========+
-|  0011  | XXXX |  utf-8  |
-+--------+------+=========+
 
 str 8 (up to 256 bytes):
 +--------+----------+=========+
-|  0100  | XXXXXXXX |  utf-8  |
+|     4  | XXXXXXXX |  utf-8  |
 +--------+----------+=========+
 
 str 16 (up to 2^16 bytes):
 +--------+----------+----------+=========+
-|  0101  | XXXXXXXX | XXXXXXXX |  utf-8  |
+|     5  | XXXXXXXX | XXXXXXXX |  utf-8  |
 +--------+----------+----------+=========+
 
 str 32 (up to 2^32 bytes):
 +--------+----------+----------+----------+----------+=========+
-|  0110  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  utf-8  |
+|     6  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  utf-8  |
 +--------+----------+----------+----------+----------+=========+
 ```
 
@@ -115,7 +99,7 @@ str 32 (up to 2^32 bytes):
 ```txt
 tag array:
 +--------+~~~~~~~~~~~~+------+
-|  0111  |  elements  |  10  |
+|     7  |  elements  |   8  |
 +--------+~~~~~~~~~~~~+------+
 ```
 
@@ -127,21 +111,21 @@ id = XXXXX (5 bits) (can change before release)
 
 tag (id):
 +--------+----+
-|  1100  | id |
+|    12  | id |
 +--------+----+
 
 tag (id, body):
 +--------+----+~~~~~~~~+
-|  1101  | id |  body  |
+|    13  | id |  body  |
 +--------+----+~~~~~~~~+
 
 tag (id, argument):
 +--------+----+~~~~~~~~~~~~+
-|  1110  | id |  argument  |
+|    14  | id |  argument  |
 +--------+----+~~~~~~~~~~~~+
 
 tag (id, body, argument):
 +--------+----+~~~~~~~~+~~~~~~~~~~~~+
-|  1111  | id |  body  |  argument  |
+|    15  | id |  body  |  argument  |
 +--------+----+~~~~~~~~+~~~~~~~~~~~~+
 ```

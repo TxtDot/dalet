@@ -6,6 +6,9 @@ pub enum DaletPackError {
     ArrMaxSizeExceeded,
     RootMaxSizeExceeded,
     ZstdCompressError,
+
+    WriteNullBody,
+    WriteNullArgument,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, TryFromPrimitive, Copy)]
@@ -17,7 +20,7 @@ pub enum TypeId {
     Str32,
     TagArray,
     TagArrayEnd,
-    TagId,
+    TagId = 12,
     TagIdBody,
     TagIdArgument,
     TagIdBodyArgument,
