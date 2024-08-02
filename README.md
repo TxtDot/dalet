@@ -9,6 +9,7 @@
 Markup language ecosystem сombining small file size, big number of possibilities for describing the interface and readability.
 
 [Specification](./specification/main.md).
+[Rust implementation](https://github.com/TxtDot/dalet-rs)
 
 > [!WARNING]
 > Specification is not complete and very unstable.

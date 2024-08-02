@@ -535,3 +535,20 @@ Creates code block.
 ```txt
 code[js]: let code = "js"
 ```
+
+## 29. Pre-formatted text
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | pre            |
+| id       | 29             |
+| body     | text           |
+| argument | no             |
+
+Creates pre formatted text block. Like code but without style and highlight.
+
+**Daleth example**:
+
+```txt
+pre: I am pre
+```
