@@ -59,7 +59,7 @@ impl IsNull for Argument {
     }
 }
 
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, PartialEq, Eq, TryFromPrimitive)]
+#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, PartialEq, Eq, TryFromPrimitive, Copy)]
 #[repr(u8)]
 /// Tag Id
 pub enum Tid {
