@@ -6,7 +6,7 @@ All apps that supports Dalet must use this format when transmitting data between
 
 All data must be compressed with [zstd](https://datatracker.ietf.org/doc/html/rfc8878).
 
-Root data format is array of tags (see [daletl specification](./daletl.md)), each element reads sequentially. Type definition for root is not needed.
+Page data format is array of tags (see [daletl specification](./daletl.md)), each element reads sequentially. Type definition for page is not needed.
 
 Mime type: `application/dalet-pack`
 

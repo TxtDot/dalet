@@ -4,12 +4,12 @@
 
 Daletl is data representation of serialized/deserialized [DaletPack](./daletpack.md).
 
-### Root
+### Page
 
-Daletl root is array of tags. For convenience, we will use the typescript notation.
+Daletl page is array of tags. For convenience, we will use the typescript notation.
 
 ```typescript
-type Root = Tag[];
+type Page = Tag[];
 ```
 
 ### Tag
@@ -17,17 +17,20 @@ type Root = Tag[];
 All tags specification is in [Tags](./tags.md).
 
 ```typescript
-interface Tag {
+export type Body = string | Tag[] | null;
+export type Argument = string | number | null;
+
+export interface Tag {
   id: number;
-  body: string | Tag[] | null;
-  argument: string | number | null;
+  body: Body;
+  argument: Argument;
 }
 ```
 
 ### Example
 
 ```typescript
-const root: Root = [
+const page: Page = [
   {
     id: 1,
     body: "I am Heading with level 1",
