@@ -6,10 +6,12 @@ Daletl is data representation of serialized/deserialized [DaletPack](./daletpack
 
 ### Page
 
-Daletl page is array of tags. For convenience, we will use the typescript notation.
+Daletl page is struct. For convenience, we will use the typescript notation.
 
 ```typescript
-type Page = Tag[];
+interface Page = {
+  data: Tag[]
+}
 ```
 
 ### Tag

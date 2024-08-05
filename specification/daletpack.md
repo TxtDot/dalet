@@ -34,16 +34,15 @@ Mime type: `application/dalet-pack`
 
 | name                     | id  |
 | ------------------------ | --- |
-| int 8                    | 1   |
-| str 8                    | 4   |
-| str 16                   | 5   |
-| str 32                   | 6   |
-| tag array                | 7   |
-| tag array end            | 8   |
-| tag (id)                 | 12  |
-| tag (id, body)           | 13  |
-| tag (id, argument)       | 14  |
-| tag (id, body, argument) | 15  |
+| str end                  | 0   |
+| str                      | 1   |
+| int                      | 2   |
+| tag array                | 3   |
+| tag array end            | 4   |
+| tag (id)                 | 5   |
+| tag (id, body)           | 6   |
+| tag (id, argument)       | 7   |
+| tag (id, body, argument) | 8   |
 
 ### Notation in diagrams
 
@@ -66,7 +65,17 @@ variable number of objects stored in DaletPack format:
 X - unknown bit
 ```
 
-### Integer format
+### Str format
+
+```txt
+
+str:
++--------+=========+--------+
+|     1  |  utf-8  | 0      |
++--------+=========+--------+
+```
+
+### Int format
 
 ```txt
 +--------+----------+
@@ -74,32 +83,12 @@ X - unknown bit
 +--------+----------+
 ```
 
-### String format
-
-```txt
-
-str 8 (up to 256 bytes):
-+--------+----------+=========+
-|     4  | XXXXXXXX |  utf-8  |
-+--------+----------+=========+
-
-str 16 (up to 2^16 bytes):
-+--------+----------+----------+=========+
-|     5  | XXXXXXXX | XXXXXXXX |  utf-8  |
-+--------+----------+----------+=========+
-
-str 32 (up to 2^32 bytes):
-+--------+----------+----------+----------+----------+=========+
-|     6  | XXXXXXXX | XXXXXXXX | XXXXXXXX | XXXXXXXX |  utf-8  |
-+--------+----------+----------+----------+----------+=========+
-```
-
 ### Tag array format
 
 ```txt
 tag array:
 +--------+~~~~~~~~~~~~+------+
-|     7  |  elements  |   8  |
+|     3  |  elements  |   4  |
 +--------+~~~~~~~~~~~~+------+
 ```
 
@@ -111,21 +100,21 @@ id = XXXXX (5 bits) (can change before release)
 
 tag (id):
 +--------+----+
-|    12  | id |
+|     5  | id |
 +--------+----+
 
 tag (id, body):
 +--------+----+~~~~~~~~+
-|    13  | id |  body  |
+|     6  | id |  body  |
 +--------+----+~~~~~~~~+
 
 tag (id, argument):
 +--------+----+~~~~~~~~~~~~+
-|    14  | id |  argument  |
+|     7  | id |  argument  |
 +--------+----+~~~~~~~~~~~~+
 
 tag (id, body, argument):
 +--------+----+~~~~~~~~+~~~~~~~~~~~~+
-|    15  | id |  body  |  argument  |
+|     8  | id |  body  |  argument  |
 +--------+----+~~~~~~~~+~~~~~~~~~~~~+
 ```

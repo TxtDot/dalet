@@ -1,4 +1,6 @@
-export type Page = Tag[];
+export interface Page {
+  data: Tag[];
+}
 export type Body = string | Tag[] | null;
 export type Argument = string | number | null;
 
