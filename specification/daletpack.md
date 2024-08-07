@@ -23,9 +23,9 @@ Mime type: `application/dalet-pack`
 
 ## Limitations
 
-- a value of integer must be between 0 and 255
-- maximum byte size of a String object is (2^32)
-- string must be encoded in UTF-8
+- a value of number must be between 0 and 255 and be integer
+- maximum byte size of a text is (2^32)
+- text must be encoded in UTF-8
 - maximum number of elements of a tag array object is (2^32)
 
 ## Formats
@@ -34,11 +34,11 @@ Mime type: `application/dalet-pack`
 
 | name                     | id  |
 | ------------------------ | --- |
-| str end                  | 0   |
-| str                      | 1   |
-| int                      | 2   |
-| tag array                | 3   |
-| tag array end            | 4   |
+| text end                 | 0   |
+| text                     | 1   |
+| number                   | 2   |
+| tags                     | 3   |
+| tags end                 | 4   |
 | tag (id)                 | 5   |
 | tag (id, body)           | 6   |
 | tag (id, argument)       | 7   |
@@ -65,17 +65,15 @@ variable number of objects stored in DaletPack format:
 X - unknown bit
 ```
 
-### Str format
+### Text format
 
 ```txt
-
-str:
 +--------+=========+--------+
 |     1  |  utf-8  | 0      |
 +--------+=========+--------+
 ```
 
-### Int format
+### Number format
 
 ```txt
 +--------+----------+
@@ -83,10 +81,9 @@ str:
 +--------+----------+
 ```
 
-### Tag array format
+### Tags format
 
 ```txt
-tag array:
 +--------+~~~~~~~~~~~~+------+
 |     3  |  elements  |   4  |
 +--------+~~~~~~~~~~~~+------+
