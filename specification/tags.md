@@ -481,7 +481,7 @@ disc[Click to expand]: I am Disclosure
 
 | Property | Description                   |
 | -------- | ----------------------------- |
-| name     | bl                            |
+| name     | block                         |
 | id       | 26                            |
 | body     | text, tags                    |
 | argument | optional; start, center, end  |
@@ -491,7 +491,7 @@ Creates block element. Can be used for aligning. By default aligned to center.
 **Daleth example**:
 
 ```yaml
-bl: I am Block
+block: I am Block
 ```
 
 Argument converts to numbers in daletl.
@@ -549,6 +549,23 @@ Creates pre formatted text block. Like code but without style and highlight.
 
 **Daleth example**:
 
-```txt
+```yaml
 pre: I am pre
+```
+
+## 30. Metadata
+
+| Property | Description    |
+| -------- | -------------- |
+| name     | meta           |
+| id       | 30             |
+| body     | text           |
+| argument | text           |
+
+Not displayed. Specifies metadata such as title, description. Must be before all tags if specified.
+
+**Daleth example**:
+
+```yaml
+meta[description]: I am description
 ```

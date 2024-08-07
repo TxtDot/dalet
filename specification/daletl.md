@@ -2,7 +2,7 @@
 
 ## Daletl
 
-Daletl is data representation of serialized/deserialized [DaletPack](./daletpack.md).
+Daletl is data representation of deserialized [DaletPack](./daletpack.md).
 
 ### Page
 
