@@ -19,6 +19,15 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 This is Daleth (high level language that compiles to Daletl).
 
 ```yaml
+# multilines
+#
+# (text) - input is trimmed with indent
+#
+# (~n text) - n is number of minimum spaces to add after trimming with indent
+# for each line
+#
+# (# text) - input not modified
+#
 # tag syntax
 #
 # tag: text body
@@ -38,15 +47,18 @@ meta[description]: This document describes Daleth syntax and some tags
 h[1]: TxtDot revolution
 p: TxtDot is a cool project
 
-# If no tag is specified, then the 'paragraph' tag is placed
-# () for block of text
+# If no tag is specified, then the 'el' tag is placed
+This is element
+br
+
+# if no tag is specified but a '()' is present, then the 'p' tag is placed
+# '\n' is deleted only in this format. If a break line is needed in a paragraph, use '  \n'.
 (
-Check Dalet too
-This is one paragraph
+  Check Dalet too
+  This is one paragraph
 )
 
-This is another paragraph
-br
+( This is another paragraph )
 
 # [ ] for argument
 row[center] {
@@ -126,7 +138,7 @@ row {
 #    Description
 #  }
 table (
-  +| Element  | Description     |
+  +| Tag      | Description     |
    | h        | Heading         |
    | p        | Paragraph       |
    | img      | Image           |

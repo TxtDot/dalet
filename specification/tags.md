@@ -124,8 +124,7 @@ ol: {
 | body     | tags                         |
 | argument | optional; start, center, end |
 
-Splits the text into rows. The alignment argument specifies how the items inside the row are aligned. By default it is aligned to the start.
-m
+Splits the text into rows. The alignment argument specifies how the items inside the row are aligned horizontally. By default it is aligned to the start.
 **Daleth example**:
 
 ```txt
@@ -486,7 +485,7 @@ disc[Click to expand]: I am Disclosure
 | body     | text, tags                    |
 | argument | optional; start, center, end  |
 
-Creates block element. Can be used for aligning. By default aligned to center.
+Creates block element. Can be used for horizontal aligning. By default aligned to center.
 
 **Daleth example**:
 
