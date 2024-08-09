@@ -15,8 +15,8 @@ Most primitive tag. Also used if no tag is specified.
 
 ```yaml
 el: I am Element
-el: [
-  h(1): I am first level heading
+el [
+  h1: I am first level heading
 ]
 Element also used if no tag is specified.
 ```
@@ -35,11 +35,11 @@ Heading is used for text formatting.
 **Daleth example**:
 
 ```yaml
-h(1): Dalet
-  h(2): Daleth
-    h(3): High level
-  h(2): Daletl
-    h(3): Low level
+h1: Dalet
+h2: Daleth
+h3: High level
+h2: Daletl
+h3: Low level
 ```
 
 ## 2. Paragraph
@@ -57,7 +57,7 @@ Paragraph is used for text formatting.
 
 ```yaml
 p: This is a paragraph
-{ Paragraph also used if no tag specified but with `{\}` }
+{- Paragraph also used with this custom syntax }
 ```
 
 ## 3. Line break
@@ -136,16 +136,11 @@ row [
   Right
 ]
 
-row(start) [
+row "start" [
   Left
   Right
 ]
 ```
-
-Argument converts to numbers in daletl.
-
-start -> 0
-end -> 1
 
 ## 7. Link
 
@@ -161,7 +156,7 @@ Link to other sites. On click the link opens in new tab.
 **Daleth example**:
 
 ```yaml
-link(https://example.com): I am Link
+link "https://example.com": I am Link
 ```
 
 ## 8. Navlink
@@ -178,7 +173,7 @@ Link to the same site. On click the link opens in current tab.
 **Daleth example**:
 
 ```yaml
-navlink(/specification): I am Navlink
+navlink "/specification": I am Navlink
 ```
 
 ## 9. Button
@@ -195,7 +190,7 @@ Same as link, but with button style.
 **Daleth example**:
 
 ```yaml
-btn(https://example.com): I am Button
+btn "https://example.com": I am Button
 ```
 
 ## 10. NavButton
@@ -212,7 +207,7 @@ Same as navlink, but with button style.
 **Daleth example**:
 
 ```yaml
-navbtn(https://example.com): I am NavButton
+navbtn "https://example.com": I am NavButton
 ```
 
 ## 11. Image
@@ -229,7 +224,7 @@ Displays an image.
 **Daleth example**:
 
 ```yaml
-img(/dalet.png)
+img "/dalet.png"
 ```
 
 ## 12. Table
@@ -247,8 +242,8 @@ Creates a table.
 
 ```txt
 table {
-  Name | Age
-  Elon | 53
+  | Name | Age |
+  | Elon | 53  |
 }
 ```
 
@@ -374,7 +369,7 @@ Link to footnote.
 **Daleth example**:
 
 ```yaml
-footlnk(1)
+footlnk 1
 ```
 
 ## 20. Footnote
@@ -391,7 +386,7 @@ Creates footnote.
 **Daleth example**:
 
 ```yaml
-footn(1): I am Footnote
+footn 1: I am Footnote
 ```
 
 ## 21. Anchor
@@ -408,7 +403,7 @@ Creates anchor. Like `<a href="#argument"></a>` in HTML.
 **Daleth example**:
 
 ```yaml
-a(0)
+a0
 ```
 
 ## 22. Strikethrough
@@ -476,7 +471,7 @@ Creates disclosure element.
 **Daleth example**:
 
 ```yaml
-disc(Click to expand): I am Disclosure
+disc "Click to expand": I am Disclosure
 ```
 
 ## 26. Block
@@ -517,7 +512,7 @@ Creates carousel.
 ```txt
 carousel [
   Example 1
-  Example 2,
+  Example 2
 ]
 ```
 
@@ -535,7 +530,7 @@ Creates code block.
 **Daleth example**:
 
 ```txt
-code(js): let code = "js"
+code "js": let code = "js"
 ```
 
 ## 29. Pre-formatted text
@@ -569,5 +564,5 @@ Not displayed. Specifies metadata such as title, description. Must be before all
 **Daleth example**:
 
 ```yaml
-meta(description): I am description
+meta "description": I am description
 ```
