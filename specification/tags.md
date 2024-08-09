@@ -367,7 +367,7 @@ bq: I am Blockquote
 | name     | footlnk        |
 | id       | 19             |
 | body     | no             |
-| argument | text  , number |
+| argument | text, number   |
 
 Link to footnote.
 

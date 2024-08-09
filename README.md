@@ -21,12 +21,13 @@ This is Daleth (high level language that compiles to Daletl).
 ```yaml
 # multilines
 #
-# `text` - input is trimmed with indent
+# {text} - input is trimmed with indent
 #
-# `~n text` - n is number of minimum spaces to add after trimming with indent
+# {~n text} - n is number of minimum spaces to add after trimming with indent
 # for each line
 #
-# `# text` - input not modified
+# {#text} - input not modified
+#
 #
 # tag syntax
 #
@@ -37,43 +38,52 @@ This is Daleth (high level language that compiles to Daletl).
 # tag [ multiple tags body ]
 #
 # Arguments
-# tag(argument)
+# tag argument
 #
 # Tags without body and argument also supported
+#
+#
+# custom no tag syntax
+#
+# {-text} - paragraph, text indent is trimmed
+# [[tags]] - element tag with body of multiple tags
+# text - element tag with text body
 
-meta(title): Daleth syntax concept
-meta(description): This document describes Daleth syntax and some tags
+meta "title": Daleth syntax concept
+meta "description": This document describes Daleth syntax and some tags
 
-h(1): TxtDot revolution
+h1: TxtDot revolution
 p: TxtDot is a cool project
 
 # If no tag is specified, then the 'el' tag is placed
+
 This is element
 br
 
-# if no tag is specified but a '{}' is present, then the 'p' tag is placed
-# '\n' is deleted only in this format. If a break line is needed in a paragraph, use '  \n'.
-{
+# if no tag is specified but a '{- text}' is present, then the 'p' tag is placed
+# '\n' is deleted in this format. If a break line is needed in a paragraph, use '  \n'.
+{-
   Check Dalet too
   This is one paragraph
 }
 
-{ This is another paragraph }
+{- This is another paragraph ({- text\}) }
 
-# ( ) for argument
-row(center) [
-  link(https://github.com/txtdot/txtdot): Homepage
-  btn(https://example.com/donate) [
+row "center" [
+  link "https://github.com/txtdot/txtdot": Homepage
+  btn "https://example.com/donate" [
     # tag without body
-    img(https://example.com/donate.png)
+    img "https://example.com/donate.png"
     Donate
   ]
 ]
 
 # [] for multiple tags
 row [
-  [
-    h(2): Features
+  # if no tag is specified but a '[[]]' is present, then the 'el' tag
+  # with multiple tags body placed
+  [[
+    h2: Features
 
     ul [
       Server-side page simplification
@@ -86,14 +96,13 @@ row [
       Some kind of Material Design 3
       Customization with plugins, see @txtdot/sdk and @txtdot/plugins
     ]
+  ]]
 
-  ]
+  [[
+    h2: Running
 
-  [
-    h(2): Running
-
-    [
-      h(3): Dev
+    [[
+      h3: Dev
 
       # {} for multiline strings, indent is automatically trimmed
       code {
@@ -102,31 +111,29 @@ row [
       }
 
       # {~n Text} n is number of minimum spaces
-      code[markdown] {~4
+      code "markdown" {~4
         this is codeblock
       }
 
       # {# Text} Text after "`# " not modified
-      code[markdown] {#     this is codeblock}
-    ]
+      code "markdown" {#     this is codeblock}
+    ]]
 
-    [
-      h(3): Production
-
+    [[
+      h3: Production
       code {
         npm install
         npm run build
         npm run start
       }
-    ]
+    ]]
 
-    [
-      h(3): Docker
-
+    [[
+      h3: Docker
       code: docker compose up -d
-    ]
+    ]]
 
-  ]
+  ]]
 ]
 
 # Table has custom format if text used
