@@ -62,79 +62,81 @@ This is element
 br
 
 # if no tag is specified but a '{- text}' is present, then the 'p' tag is placed
-# '\n' is deleted in this format. If a break line is needed in a paragraph, use '  \n'.
+# '\n' is replaced with ' ' in this format.
 {-
-  Check Dalet too
-  This is one paragraph
+    Check Dalet too
+    This is one paragraph
 }
 
-{- This is another paragraph ({- text\}) }
+{-
+    This is another paragraph ({- text\})
+}
 
 row "center" [
-  link "https://github.com/txtdot/txtdot": Homepage
-  btn "https://example.com/donate" [
-    # tag without body
-    img "https://example.com/donate.png"
-    Donate
-  ]
+    link "https://github.com/txtdot/txtdot": Homepage
+    btn "https://example.com/donate" [
+        # tag without body
+        img "https://example.com/donate.png"
+        Donate
+    ]
 ]
 
 # [] for multiple tags
 row [
-  # if no tag is specified but a '[[]]' is present, then the 'el' tag
-  # with multiple tags body placed
-  [[
-    h2: Features
-
-    ul [
-      Server-side page simplification
-      Media proxy
-      Image compression with Sharp
-      Rendering client-side apps `Vanilla, React, Vue, etc` with webder
-      Search with SearXNG
-      Handy API endpoints
-      No client JavaScript
-      Some kind of Material Design 3
-      Customization with plugins, see @txtdot/sdk and @txtdot/plugins
-    ]
-  ]]
-
-  [[
-    h2: Running
-
+    # if no tag is specified but a '[[]]' is present, then the 'el' tag
+    # with multiple tags body placed
     [[
-      h3: Dev
+        h2: Features
 
-      # {} for multiline strings, indent is automatically trimmed
-      code {
-        npm install
-        npm run dev
-      }
-
-      # {~n Text} n is number of minimum spaces
-      code "markdown" {~4
-        this is codeblock
-      }
-
-      # {# Text} Text after "`# " not modified
-      code "markdown" {#     this is codeblock}
+        ul [
+            Server-side page simplification
+            Media proxy
+            Image compression with Sharp
+            Rendering client-side apps `Vanilla, React, Vue, etc` with webder
+            Search with SearXNG
+            Handy API endpoints
+            No client JavaScript
+            Some kind of Material Design 3
+            Customization with plugins, see @txtdot/sdk and @txtdot/plugins
+        ]
     ]]
 
     [[
-      h3: Production
-      code {
-        npm install
-        npm run build
-        npm run start
-      }
-    ]]
+        h2: Running
 
-    [[
-      h3: Docker
-      code: docker compose up -d
-    ]]
+        [[
+            h3: Dev
 
-  ]]
+            # {} for multiline strings, indent is automatically trimmed
+            code {
+                npm install
+                npm run dev
+            }
+
+            # {~n Text} n is number of minimum spaces
+            code "markdown" {~4
+                this is codeblock
+            }
+
+            # {# Text} Text after "`# " not modified
+            code "markdown" {#     this is codeblock}
+        ]]
+
+        [[
+            h3: Production
+            code {
+                npm install
+                npm run build
+                npm run start
+            }
+        ]]
+
+        [[
+            h3: Docker
+            code: docker compose up -d
+        ]]
+
+    ]]
 ]
 
 # Table has custom format if text used
@@ -146,14 +148,14 @@ row [
 #    Description
 #  ]
 table {
-  +| Tag      | Description     |
-   | h        | Heading         |
-   | p        | Paragraph       |
-   | img      | Image           |
-   | link     | Link            |
-   | btn      | Button          |
-   | ul       | Unordered list  |
-   | br       | Line break      |
-  +| quantity | 7               |
+    +| Tag      | Description     |
+     | h        | Heading         |
+     | p        | Paragraph       |
+     | img      | Image           |
+     | link     | Link            |
+     | btn      | Button          |
+     | ul       | Unordered list  |
+     | br       | Line break      |
+    +| quantity | 7               |
 }
 ```
