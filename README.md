@@ -139,7 +139,7 @@ row [
     ]]
 ]
 
-# Table has custom format if text used
+# Table has custom format
 # +| cells | - primary column
 #  | cells | - secondary column
 #  | Element | Description | - converts to
@@ -147,15 +147,15 @@ row [
 #    Element
 #    Description
 #  ]
-table {
-    +| Tag      | Description     |
-     | h        | Heading         |
-     | p        | Paragraph       |
-     | img      | Image           |
-     | link     | Link            |
-     | btn      | Button          |
-     | ul       | Unordered list  |
-     | br       | Line break      |
-    +| quantity | 7               |
+{> table
+    [[ Tag      | Description    ]]
+     [ h        | Heading        ]
+     [ p        | Paragraph      ]
+     [ img      | Image          ]
+     [ link     | Link           ]
+     [ btn      | Button         ]
+     [ ul       | Unordered list ]
+     [ br       | Line break     ]
+    [[ quantity | 7              ]]
 }
 ```
