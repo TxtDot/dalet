@@ -118,8 +118,8 @@ row [
                 this is codeblock
             }
 
-            # {# Text} Text after "`# " not modified
-            code "markdown" {#     this is codeblock}
+            # {# Text} Text after "{#" not modified
+            code "markdown" {#    this is codeblock}
         ]]
 
         [[
