@@ -233,7 +233,7 @@ img "/dalet.png"
 | -------- | --------------------------------- |
 | name     | table                             |
 | id       | 12                                |
-| body     | (tcol or tpcol)[] or table-string |
+| body     | (trow or tprow)[] or table-string |
 | argument | no                                |
 
 Creates a table.
@@ -247,41 +247,41 @@ table {
 }
 ```
 
-## 13. Table Column
+## 13. Table Row
 
 | Property | Description |
 | -------- | ----------- |
-| name     | tcol        |
+| name     | trow        |
 | id       | 13          |
 | body     | tags        |
 | argument | no          |
 
-Creates a table column.
+Creates a table row.
 
 **Daleth example**:
 
 ```txt
-tcol [
+trow [
   Name
   Age
 ]
 ```
 
-## 14. Table Primary Column
+## 14. Table Primary Row
 
 | Property | Description |
 | -------- | ----------- |
-| name     | tpcol       |
+| name     | tprow       |
 | id       | 14          |
 | body     | tags        |
 | argument | no          |
 
-Like table column, but with primary background.
+Like table row, but with primary background.
 
 **Daleth example**:
 
 ```txt
-tpcol [
+tprow [
   Name
   Age
 ]

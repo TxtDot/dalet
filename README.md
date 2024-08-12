@@ -143,7 +143,7 @@ row [
 # +| cells | - primary column
 #  | cells | - secondary column
 #  | Element | Description | - converts to
-#  tcol [
+#  trow [
 #    Element
 #    Description
 #  ]
