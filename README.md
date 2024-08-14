@@ -12,6 +12,8 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 
 [Rust implementation](https://github.com/TxtDot/dalet-rs)
 
+[Help center](./help/main.md)
+
 > [!WARNING]
 > Specification and rust implementation is not complete and very unstable.
 
