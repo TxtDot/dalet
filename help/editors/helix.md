@@ -1,4 +1,4 @@
-1. Install dalet_lsp `cargo install daleth_lsp`
+1. Install daleth_lsp `cargo install daleth_lsp`
 2. Add this to languages.toml:
 
 ```toml
