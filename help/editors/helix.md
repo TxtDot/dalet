@@ -5,6 +5,7 @@
 [[language]]
 name = "daleth"
 language-servers = ["daleth-lsp"]
+auto-format = true
 scope = "source.daleth"
 file-types = ["dlth"]
 
