@@ -19,7 +19,7 @@ Markup language ecosystem сombining small file size, big number of possibilitie
 
 This is Daleth (high level language that compiles to Daletl).
 
-```yaml
+```daleth
 # multilines
 #
 # {text} - input is trimmed with indent
@@ -56,9 +56,9 @@ meta "description": This document describes Daleth syntax and some tags
 h1: TxtDot revolution
 p: TxtDot is a cool project
 
-# If no tag is specified, then the 'el' tag is placed
+# If no tag is specified, but "- text" present, then the 'el' tag is placed
 
-This is element
+- This is element
 br
 
 # if no tag is specified but a '{- text}' is present, then the 'p' tag is placed
@@ -77,7 +77,7 @@ row "center" [
     btn "https://example.com/donate" [
         # tag without body
         img "https://example.com/donate.png"
-        Donate
+        - Donate
     ]
 ]
 
@@ -85,19 +85,20 @@ row "center" [
 row [
     # if no tag is specified but a '[[]]' is present, then the 'el' tag
     # with multiple tags body placed
+
     [[
         h2: Features
 
         ul [
-            Server-side page simplification
-            Media proxy
-            Image compression with Sharp
-            Rendering client-side apps `Vanilla, React, Vue, etc` with webder
-            Search with SearXNG
-            Handy API endpoints
-            No client JavaScript
-            Some kind of Material Design 3
-            Customization with plugins, see @txtdot/sdk and @txtdot/plugins
+            - Server-side page simplification
+            - Media proxy
+            - Image compression with Sharp
+            - Rendering client-side apps `Vanilla, React, Vue, etc` with webder
+            - Search with SearXNG
+            - Handy API endpoints
+            - No client JavaScript
+            - Some kind of Material Design 3
+            - Customization with plugins, see @txtdot/sdk and @txtdot/plugins
         ]
     ]]
 
