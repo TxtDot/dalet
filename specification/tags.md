@@ -13,12 +13,12 @@ Most primitive tag. Also used if no tag is specified.
 
 **Daleth example**:
 
-```yaml
+```daleth
 el: I am Element
 el [
   h1: I am first level heading
 ]
-Element also used if no tag is specified.
+- Element also used with `- text` syntax.
 ```
 
 ## 1. Heading
@@ -34,7 +34,7 @@ Heading is used for text formatting.
 
 **Daleth example**:
 
-```yaml
+```daleth
 h1: Dalet
 h2: Daleth
 h3: High level
@@ -55,7 +55,7 @@ Paragraph is used for text formatting.
 
 **Daleth example**:
 
-```yaml
+```daleth
 p: This is a paragraph
 {- Paragraph also used with this custom syntax }
 ```
@@ -73,7 +73,7 @@ Line break is used to insert a line break into the text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 br
 ```
 
@@ -90,10 +90,10 @@ Unordered list is used to create a list.
 
 **Daleth example**:
 
-```txt
+```daleth
 ul [
-  Item 1
-  Item 2
+  - Item 1
+  - Item 2
 ]
 ```
 
@@ -110,11 +110,11 @@ Ordered list is used to create a list with increasing numbers.
 
 **Daleth example**:
 
-```txt
+```daleth
 ol [
-  Item
-  Item
-  Item
+  - Item
+  - Item
+  - Item
 ]
 ```
 
@@ -130,15 +130,15 @@ ol [
 Splits the text into rows. The alignment argument specifies how the items inside the row are aligned horizontally. By default it is aligned to the start.
 **Daleth example**:
 
-```txt
+```daleth
 row [
-  Left
-  Right
+  - Left
+  - Right
 ]
 
 row "start" [
-  Left
-  Right
+  - Left
+  - Right
 ]
 ```
 
@@ -155,7 +155,7 @@ Link to other sites. On click the link opens in new tab.
 
 **Daleth example**:
 
-```yaml
+```daleth
 link "https://example.com": I am Link
 ```
 
@@ -172,7 +172,7 @@ Link to the same site. On click the link opens in current tab.
 
 **Daleth example**:
 
-```yaml
+```daleth
 navlink "/specification": I am Navlink
 ```
 
@@ -189,7 +189,7 @@ Same as link, but with button style.
 
 **Daleth example**:
 
-```yaml
+```daleth
 btn "https://example.com": I am Button
 ```
 
@@ -206,7 +206,7 @@ Same as navlink, but with button style.
 
 **Daleth example**:
 
-```yaml
+```daleth
 navbtn "https://example.com": I am NavButton
 ```
 
@@ -223,28 +223,39 @@ Displays an image.
 
 **Daleth example**:
 
-```yaml
+```daleth
 img "/dalet.png"
 ```
 
 ## 12. Table
 
-| Property | Description                       |
-| -------- | --------------------------------- |
-| name     | table                             |
-| id       | 12                                |
-| body     | (trow or tprow)[] or table-string |
-| argument | no                                |
+| Property | Description |
+| -------- | ----------- |
+| name     | table       |
+| id       | 12          |
+| body     | tags        |
+| argument | no          |
 
 Creates a table.
 
 **Daleth example**:
 
-```txt
-table {
-  | Name | Age |
-  | Elon | 53  |
+```daleth
+{> table
+  [ Name | Age ]
+  [ Elon | 53  ]
 }
+
+table [
+    tprow [
+        - Name
+        - Age
+    ]
+    trow [
+        - Elon
+        - 53
+    ]
+]
 ```
 
 ## 13. Table Row
@@ -260,10 +271,10 @@ Creates a table row.
 
 **Daleth example**:
 
-```txt
+```daleth
 trow [
-  Name
-  Age
+  - Name
+  - Age
 ]
 ```
 
@@ -280,10 +291,10 @@ Like table row, but with primary background.
 
 **Daleth example**:
 
-```txt
+```daleth
 tprow [
-  Name
-  Age
+  - Name
+  - Age
 ]
 ```
 
@@ -300,7 +311,7 @@ Creates a horizontal rule.
 
 **Daleth example**:
 
-```yaml
+```daleth
 hr
 ```
 
@@ -317,7 +328,7 @@ Creates **bold** text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 b: I am Bold
 ```
 
@@ -334,7 +345,7 @@ Creates _italic_ text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 i: I am Italic
 ```
 
@@ -351,7 +362,7 @@ Creates a blockquote.
 
 **Daleth example**:
 
-```yaml
+```daleth
 bq: I am Blockquote
 ```
 
@@ -368,7 +379,7 @@ Link to footnote.
 
 **Daleth example**:
 
-```yaml
+```daleth
 footlnk 1
 ```
 
@@ -379,13 +390,13 @@ footlnk 1
 | name     | footn          |
 | id       | 20             |
 | body     | text           |
-| argument | text  , number |
+| argument | text, number   |
 
 Creates footnote.
 
 **Daleth example**:
 
-```yaml
+```daleth
 footn 1: I am Footnote
 ```
 
@@ -402,7 +413,7 @@ Creates anchor. Like `<a href="#argument"></a>` in HTML.
 
 **Daleth example**:
 
-```yaml
+```daleth
 a0
 ```
 
@@ -419,7 +430,7 @@ Creates ~~strikethrough~~ text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 s: I am Strikethrough
 ```
 
@@ -436,7 +447,7 @@ Creates ^superscript^ text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 sup: I am Superscript
 ```
 
@@ -453,7 +464,7 @@ Creates ~subscript~ text.
 
 **Daleth example**:
 
-```yaml
+```daleth
 sub: I am Subscript
 ```
 
@@ -470,7 +481,7 @@ Creates disclosure element.
 
 **Daleth example**:
 
-```yaml
+```daleth
 disc "Click to expand": I am Disclosure
 ```
 
@@ -487,7 +498,7 @@ Creates block element. Can be used for horizontal aligning. By default aligned t
 
 **Daleth example**:
 
-```yaml
+```daleth
 block: I am Block
 ```
 
@@ -509,10 +520,10 @@ Creates carousel.
 
 **Daleth example**:
 
-```txt
+```daleth
 carousel [
-  Example 1
-  Example 2
+  - Example 1
+  - Example 2
 ]
 ```
 
@@ -529,7 +540,7 @@ Creates code block.
 
 **Daleth example**:
 
-```txt
+```daleth
 code "js": let code = "js"
 ```
 
@@ -546,7 +557,7 @@ Creates pre formatted text block. Like code but without style and highlight.
 
 **Daleth example**:
 
-```yaml
+```daleth
 pre: I am pre
 ```
 
@@ -563,6 +574,6 @@ Not displayed. Specifies metadata such as title, description. Must be before all
 
 **Daleth example**:
 
-```yaml
+```daleth
 meta "description": I am description
 ```

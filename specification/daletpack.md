@@ -12,14 +12,49 @@ Mime type: `application/dalet-pack`
 
 ## Types
 
-- **Integer**
-- **String** (3)
-- **Tag array**
-- **Tags** (4)
-  - **Tag (id)**
-  - **Tag (id, body)**
-  - **Tag (id, argument)**
-  - **Tag (id, body, argument)**
+Notation: `type_name (...data) [hex_id]`
+
+- Tags with body
+  - Tag (id, text) [**a0**]
+  - Tag (id, tag) [**a1**]
+  - Tag (id, tags) [**a2**]
+- Tags with argument
+  - Tag (id, text) [**b0**]
+  - Tag (id, number) [**b1**]
+- Complex tags
+  - Tag (id, text, text) [**c0**]
+  - Tag (id, tag, text) [**c1**]
+  - Tag (id, tags, text) [**c2**]
+  - Tag (id, text, number) [**c3**]
+  - Tag (id, tag, number) [**c4**]
+  - Tag (id, tags, number) [**c5**]
+- Custom tags (most used, for better compression, backward compatible)
+  - El (text) [**d1**]
+  - El (tag) [**d2**]
+  - El (tags) [**d3**]
+  - P (text) [**d4**]
+  - P (tag) [**d5**]
+  - P (tags) [**d6**]
+
+  - Br [**d7**]
+  - Hr [**d8**]
+
+  - Img (text) [**d9**]
+  - Table (tags) [**da**]
+  - Tprow (tags) [**db**]
+  - Trow (tags) [**dc**]
+
+  - B (text) [**dd**]
+  - I (text) [**de**]
+
+  - A (number) [**df**]
+  - A (text) [**e0**]
+
+  - S (text) [**e1**]
+  - Sup (text) [**e2**]
+  - Sub (text) [**e3**]
+
+  - Meta (text, text) [**e4**]
 
 ## Limitations
 
@@ -28,90 +63,59 @@ Mime type: `application/dalet-pack`
 - text must be encoded in UTF-8
 - maximum number of elements of a tag array object is (2^32)
 
-## Formats
+## Binary representation
 
-### Overview
+### Special symbols
 
-| name                     | id  |
-| ------------------------ | --- |
-| text end                 | 0   |
-| text                     | 1   |
-| number                   | 2   |
-| tags                     | 3   |
-| tags end                 | 4   |
-| tag (id)                 | 5   |
-| tag (id, body)           | 6   |
-| tag (id, argument)       | 7   |
-| tag (id, body, argument) | 8   |
+| name                     | hex_id  |
+| ------------------------ | ------- |
+| text end                 | 00      |
+| tags end                 | 01      |
 
-### Notation in diagrams
+### Format
+
+#### Notation
+
+Byte - `+----+`
+Variable length of bytes - `+====+`
+Variable number of data objects - `+~~~~+`
+
+#### Overview
+
+
+##### Tag data
+
+Look into types.
+`type_name (...data) [hex_id]`
+
+becomes
 
 ```txt
-byte:
-+--------+
-|        |
-+--------+
-
-a variable number of bytes:
-+========+
-|        |
-+========+
-
-variable number of objects stored in DaletPack format:
-+~~~~~~~~~~~~~~~~~+
-|                 |
-+~~~~~~~~~~~~~~~~~+
-
-X - unknown bit
++--------+~~~~~~~~~+
+| hex_id | ...data |
++--------+~~~~~~~~~+
 ```
 
-### Text format
+##### Number data
 
 ```txt
-+--------+=========+--------+
-|     1  |  utf-8  | 0      |
-+--------+=========+--------+
++---------------+
+| 8-bit integer |
++---------------+
 ```
 
-### Number format
+##### Text data
 
 ```txt
-+--------+----------+
-|     1  | XXXXXXXX |
-+--------+----------+
++=============+----+
+| utf-8 bytes | 00 |
++=============+----+
 ```
 
-### Tags format
+##### Tags data
 
 ```txt
-+--------+~~~~~~~~~~~~+------+
-|     3  |  elements  |   4  |
-+--------+~~~~~~~~~~~~+------+
-```
-
-### Tag format
-
-```txt
-
-id = XXXXX (5 bits) (can change before release)
-
-tag (id):
-+--------+----+
-|     5  | id |
-+--------+----+
-
-tag (id, body):
-+--------+----+~~~~~~~~+
-|     6  | id |  body  |
-+--------+----+~~~~~~~~+
-
-tag (id, argument):
-+--------+----+~~~~~~~~~~~~+
-|     7  | id |  argument  |
-+--------+----+~~~~~~~~~~~~+
-
-tag (id, body, argument):
-+--------+----+~~~~~~~~+~~~~~~~~~~~~+
-|     8  | id |  body  |  argument  |
-+--------+----+~~~~~~~~+~~~~~~~~~~~~+
++~~~~~~+----+
+| tags | 01 |
++~~~~~~+----+
 ```
