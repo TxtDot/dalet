@@ -143,9 +143,9 @@ row [
 ]
 
 # Table has custom format
-# +| cells | - primary column
-#  | cells | - secondary column
-#  | Element | Description | - converts to
+# +[[ cells ]] - primary column
+#   [ cells ] - secondary column
+#  [ Element | Description ] - converts to
 #  trow [
 #    Element
 #    Description

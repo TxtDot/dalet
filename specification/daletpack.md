@@ -29,6 +29,7 @@ Notation: `type_name (...data) [hex_id]`
   - Tag (id, tag, number) [**c4**]
   - Tag (id, tags, number) [**c5**]
 - Custom tags (most used, for better compression, backward compatible)
+  - Tag(id) [**d0**]
   - El (text) [**d1**]
   - El (tag) [**d2**]
   - El (tags) [**d3**]
@@ -39,22 +40,19 @@ Notation: `type_name (...data) [hex_id]`
   - Br [**d7**]
   - Hr [**d8**]
 
-  - Img (text) [**d9**]
-  - Table (tags) [**da**]
-  - Tprow (tags) [**db**]
-  - Trow (tags) [**dc**]
+  - Img (text arg) [**d9**]
 
-  - B (text) [**dd**]
-  - I (text) [**de**]
+  - B (text) [**da**]
+  - I (text) [**db**]
 
-  - A (number) [**df**]
-  - A (text) [**e0**]
+  - A (number arg) [**dc**]
+  - A (text arg) [**dd**]
 
-  - S (text) [**e1**]
-  - Sup (text) [**e2**]
-  - Sub (text) [**e3**]
+  - S (text) [**de**]
+  - Sup (text) [**df**]
+  - Sub (text) [**e0**]
 
-  - Meta (text, text) [**e4**]
+  - Meta (text, text arg) [**e1**]
 
 ## Limitations
 
