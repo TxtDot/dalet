@@ -75,7 +75,9 @@ Notation: `type_name (...data) [hex_id]`
 #### Notation
 
 Byte - `+----+`
+
 Variable length of bytes - `+====+`
+
 Variable number of data objects - `+~~~~+`
 
 #### Overview
