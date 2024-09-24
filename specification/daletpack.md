@@ -12,47 +12,23 @@ Mime type: `application/dalet-pack`
 
 ## Types
 
-Notation: `type_name (...data) [hex_id]`
+Notation: 
+`(id, [body_type], [argument_type]) [hex_id]`
 
 - Tags with body
-  - Tag (id, text) [**a0**]
-  - Tag (id, tag) [**a1**]
-  - Tag (id, tags) [**a2**]
+  - (id, text) [**a0**]
+  - (id, tag) [**a1**]
+  - (id, tags) [**a2**]
 - Tags with argument
-  - Tag (id, text) [**b0**]
-  - Tag (id, number) [**b1**]
+  - (id, text) [**b0**]
+  - (id, number) [**b1**]
 - Complex tags
-  - Tag (id, text, text) [**c0**]
-  - Tag (id, tag, text) [**c1**]
-  - Tag (id, tags, text) [**c2**]
-  - Tag (id, text, number) [**c3**]
-  - Tag (id, tag, number) [**c4**]
-  - Tag (id, tags, number) [**c5**]
-- Custom tags (most used, for better compression, backward compatible)
-  - Tag(id) [**d0**]
-  - El (text) [**d1**]
-  - El (tag) [**d2**]
-  - El (tags) [**d3**]
-  - P (text) [**d4**]
-  - P (tag) [**d5**]
-  - P (tags) [**d6**]
-
-  - Br [**d7**]
-  - Hr [**d8**]
-
-  - Img (text arg) [**d9**]
-
-  - B (text) [**da**]
-  - I (text) [**db**]
-
-  - A (number arg) [**dc**]
-  - A (text arg) [**dd**]
-
-  - S (text) [**de**]
-  - Sup (text) [**df**]
-  - Sub (text) [**e0**]
-
-  - Meta (text, text arg) [**e1**]
+  - (id, text, text) [**c0**]
+  - (id, tag, text) [**c1**]
+  - (id, tags, text) [**c2**]
+  - (id, text, number) [**c3**]
+  - (id, tag, number) [**c4**]
+  - (id, tags, number) [**c5**]
 
 ## Limitations
 
